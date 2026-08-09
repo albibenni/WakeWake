@@ -87,13 +87,12 @@ public final class AudioService: NSObject, ObservableObject {
                 audioPlayer?.prepareToPlay()
                 audioPlayer?.play()
                 print("🚨 Playing default emergency siren WAV at volume \(volume)")
-                return
             } catch {
                 print("❌ Failed to play siren WAV: \(error.localizedDescription)")
             }
         }
 
-        // Secondary fallback alert sound
+        // Secondary physical system alert sound fallback
         AudioServicesPlayAlertSound(SystemSoundID(1005))
     }
 
