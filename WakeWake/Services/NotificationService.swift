@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UserNotifications
+@preconcurrency import UserNotifications
 import Combine
 
 @MainActor
@@ -137,20 +137,22 @@ public final class NotificationService: NSObject, ObservableObject {
 extension NotificationService: UNUserNotificationCenterDelegate {
 
     /// Handle notification when app is in FOREGROUND
-    public func userNotificationCenter(
+    nonisolated public func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification
     ) async -> UNNotificationPresentationOptions {
         let userInfo = notification.request.content.userInfo
         if let idString = userInfo["alarm_id"] as? String, let alarmID = UUID(uuidString: idString) {
-            self.currentRingingAlarmID = alarmID
+            await MainActor.run {
+                self.currentRingingAlarmID = alarmID
+            }
         }
         // Show banner, play critical sound, badge
         return [.banner, .sound, .badge, .list]
     }
 
     /// Handle notification action responses (e.g. user tapped notification or snooze button)
-    public func userNotificationCenter(
+    nonisolated public func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse
     ) async {
@@ -158,12 +160,14 @@ extension NotificationService: UNUserNotificationCenterDelegate {
         guard let idString = userInfo["alarm_id"] as? String, let alarmID = UUID(uuidString: idString) else { return }
 
         switch response.actionIdentifier {
-        case Self.snoozeActionIdentifier:
+        case NotificationService.snoozeActionIdentifier:
             print("💤 Snooze action tapped for alarm \(alarmID)")
             NotificationCenter.default.post(name: .snoozeAlarmTriggered, object: alarmID)
-        case Self.dismissActionIdentifier, UNNotificationDefaultActionIdentifier:
+        case NotificationService.dismissActionIdentifier, UNNotificationDefaultActionIdentifier:
             print("🔔 Dismiss/Tap action launched app for alarm \(alarmID)")
-            self.currentRingingAlarmID = alarmID
+            await MainActor.run {
+                self.currentRingingAlarmID = alarmID
+            }
             NotificationCenter.default.post(name: .startAlarmMissionTriggered, object: alarmID)
         default:
             break

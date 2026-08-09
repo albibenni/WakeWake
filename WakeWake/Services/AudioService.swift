@@ -29,7 +29,7 @@ public final class AudioService: NSObject, ObservableObject {
         do {
             let session = AVAudioSession.sharedInstance()
             // .playback category ensures audio plays even when mute switch is ON or screen is locked
-            try session.setCategory(.playback, mode: .alarm, options: [.duckOthers, .interruptSpokenAudioAndMixWithOthers])
+            try session.setCategory(.playback, mode: .default, options: [.duckOthers, .interruptSpokenAudioAndMixWithOthers])
             try session.setActive(true, options: .notifyOthersOnDeactivation)
             print("🔊 AudioSession successfully configured for Alarm Playback.")
         } catch {
