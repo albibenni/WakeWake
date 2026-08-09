@@ -5,7 +5,7 @@ SIMULATOR_NAME ?= iPhone 17
 SCHEME ?= WakeWake
 DERIVED_DATA_PATH ?= ./build
 
-.PHONY: help build test coverage clean list-destinations
+.PHONY: help build test coverage clean list-destinations install-hooks
 
 help: ## Display available Makefile commands
 	@echo "========================================================================"
@@ -37,6 +37,20 @@ coverage: ## Run test suite with code coverage enabled
 		-enableCodeCoverage YES \
 		-derivedDataPath $(DERIVED_DATA_PATH)
 	@echo "✅ Code coverage results stored in $(DERIVED_DATA_PATH)/Logs/Test/"
+
+install-hooks: ## Install Git pre-push hook to build and run test suite before push
+	@echo "⚓️ Installing Git pre-push hook in .git/hooks/pre-push..."
+	@mkdir -p .git/hooks
+	@echo '#!/bin/bash' > .git/hooks/pre-push
+	@echo '# WakeWake Git Pre-Push Hook' >> .git/hooks/pre-push
+	@echo 'echo "🚀 Running git pre-push check (build & test suite)..."' >> .git/hooks/pre-push
+	@echo 'make build' >> .git/hooks/pre-push
+	@echo 'if [ $$? -ne 0 ]; then echo "❌ Git push aborted: make build failed!"; exit 1; fi' >> .git/hooks/pre-push
+	@echo 'make test' >> .git/hooks/pre-push
+	@echo 'if [ $$? -ne 0 ]; then echo "❌ Git push aborted: make test failed!"; exit 1; fi' >> .git/hooks/pre-push
+	@echo 'echo "✅ Pre-push verification passed! Proceeding with git push..."' >> .git/hooks/pre-push
+	@chmod +x .git/hooks/pre-push
+	@echo "✅ Git pre-push hook installed successfully in .git/hooks/pre-push!"
 
 clean: ## Clean build artifacts and derived data
 	@echo "🧹 Cleaning build artifacts..."
