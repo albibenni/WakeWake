@@ -45,6 +45,19 @@ public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
         }
     }
 
+    /// Native iOS built-in system sound ID
+    public var systemSoundID: UInt32 {
+        switch self {
+        case .emergencyBell: return 1005 // Alarm Siren Alert
+        case .fireSignal: return 1016   // Rapid Pulse Alert
+        case .highVoltage: return 1022  // Telegraph Electric Buzz
+        case .neonPulse: return 1025    // Fanfare Synth Pulse
+        case .radarAlert: return 1033   // Radar Ping Alert
+        case .militaryBugle: return 1007 // Reveille Bugle Alert
+        case .customRingtone: return 1005
+        }
+    }
+
     /// Sound description for sound picker preview
     public var description: String {
         switch self {
