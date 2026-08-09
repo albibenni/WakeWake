@@ -109,8 +109,13 @@ public final class AudioService: NSObject, ObservableObject {
         isPlayingToneEngine = true
         let engine = AVAudioEngine()
         let mainMixer = engine.mainMixerNode
-        let sampleRate = mainMixer.outputFormat(forBus: 0).sampleRate
-        let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1)!
+        let hardwareSampleRate = mainMixer.outputFormat(forBus: 0).sampleRate
+        let sampleRate: Double = (hardwareSampleRate > 0 && !hardwareSampleRate.isNaN) ? hardwareSampleRate : 44100.0
+        
+        guard let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1) else {
+            AudioServicesPlayAlertSound(SystemSoundID(1005))
+            return
+        }
 
         var sampleTime: Double = 0.0
         let sourceNode = AVAudioSourceNode { _, _, frameCount, audioBufferList -> OSStatus in
@@ -120,12 +125,15 @@ public final class AudioService: NSObject, ObservableObject {
 
             for frame in 0..<Int(frameCount) {
                 let sirenModulation = sin(2.0 * Double.pi * 4.0 * sampleTime / sampleRate) // 4Hz pulse
-                let sampleVal = Float(sin(sampleTime * phaseIncrement) * (sirenModulation > 0 ? 1.0 : 0.2) * volume)
+                let val = sin(sampleTime * phaseIncrement) * (sirenModulation > 0 ? 1.0 : 0.2) * volume
+                let sampleVal = Float(val.isNaN ? 0.0 : val)
                 sampleTime += 1.0
 
                 for buffer in ablPointer {
                     let buf: UnsafeMutableBufferPointer<Float> = UnsafeMutableBufferPointer(buffer)
-                    buf[frame] = sampleVal
+                    if frame < buf.count {
+                        buf[frame] = sampleVal
+                    }
                 }
             }
             return noErr
@@ -143,5 +151,8 @@ public final class AudioService: NSObject, ObservableObject {
             // System sound emergency fallback
             AudioServicesPlayAlertSound(SystemSoundID(1005))
         }
+
+        // Always play system sound alert once as secondary audio output
+        AudioServicesPlayAlertSound(SystemSoundID(1005))
     }
 }

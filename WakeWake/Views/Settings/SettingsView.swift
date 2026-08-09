@@ -11,8 +11,11 @@ public struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var notificationService = NotificationService.shared
 
-    @State private var isTestingAlarm: Bool = false
-    @State private var testAlarm: Alarm? = nil
+    var onTestAlarm: ((Alarm) -> Void)? = nil
+
+    public init(onTestAlarm: ((Alarm) -> Void)? = nil) {
+        self.onTestAlarm = onTestAlarm
+    }
 
     public var body: some View {
         NavigationStack {
@@ -88,8 +91,10 @@ public struct SettingsView: View {
                                         missionDifficulty: .easy,
                                         missionTargetCount: 2
                                     )
-                                    self.testAlarm = demoAlarm
-                                    self.isTestingAlarm = true
+                                    dismiss()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                                        onTestAlarm?(demoAlarm)
+                                    }
                                 }
                             }
                         }
@@ -140,14 +145,6 @@ public struct SettingsView: View {
                     }
                     .bold()
                     .foregroundColor(.cyan)
-                }
-            }
-            .fullScreenCover(isPresented: $isTestingAlarm) {
-                if let alarm = testAlarm {
-                    AlarmRingingView(alarm: alarm) {
-                        isTestingAlarm = false
-                        testAlarm = nil
-                    }
                 }
             }
         }

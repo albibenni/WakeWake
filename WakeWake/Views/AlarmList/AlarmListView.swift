@@ -138,7 +138,9 @@ public struct AlarmListView: View {
                 AlarmEditView(alarmToEdit: alarm)
             }
             .sheet(isPresented: $showingSettings) {
-                SettingsView()
+                SettingsView { demoAlarm in
+                    self.activeRingingAlarm = demoAlarm
+                }
             }
             .fullScreenCover(isPresented: $showingNightstandMode) {
                 NightstandClockView()
