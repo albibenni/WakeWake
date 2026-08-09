@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 import AVFoundation
 
+@MainActor
 public final class AppDelegate: NSObject, UIApplicationDelegate {
 
     public func application(
@@ -16,7 +17,9 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
 
-        // Initialize Audio Session & Request Notification Permissions for scheduled alarms
+        // Synchronously register notification delegate on app launch so iOS handles notification taps
+        UNUserNotificationCenter.current().delegate = NotificationService.shared
+        
         Task { @MainActor in
             AudioService.shared.configureAudioSession()
             _ = await NotificationService.shared.requestPermissions()

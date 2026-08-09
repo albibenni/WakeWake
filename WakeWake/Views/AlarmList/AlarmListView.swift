@@ -162,17 +162,38 @@ public struct AlarmListView: View {
                 updateCountdown()
                 checkScheduledAlarmsToRing()
             }
+            .onChange(of: alarms) { _, newAlarms in
+                if activeRingingAlarm == nil, let currentID = notificationService.currentRingingAlarmID {
+                    if let alarm = newAlarms.first(where: { $0.id == currentID }) {
+                        triggerRinging(for: alarm)
+                    }
+                }
+            }
             .onReceive(notificationService.$currentRingingAlarmID) { alarmID in
                 if let alarmID = alarmID {
                     if let alarm = alarms.first(where: { $0.id == alarmID }) {
-                        self.activeRingingAlarm = alarm
+                        triggerRinging(for: alarm)
                     }
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .startAlarmMissionTriggered)) { note in
                 if let alarmID = note.object as? UUID, let alarm = alarms.first(where: { $0.id == alarmID }) {
-                    self.activeRingingAlarm = alarm
+                    triggerRinging(for: alarm)
                 }
+            }
+        }
+    }
+
+    private func triggerRinging(for alarm: Alarm) {
+        guard activeRingingAlarm?.id != alarm.id else { return }
+        DispatchQueue.main.async {
+            self.showingSettings = false
+            self.showingAddAlarm = false
+            self.alarmToEdit = nil
+            self.showingNightstandMode = false
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.activeRingingAlarm = alarm
             }
         }
     }
@@ -181,14 +202,16 @@ public struct AlarmListView: View {
         guard activeRingingAlarm == nil else { return }
         let now = Date()
         let calendar = Calendar.current
-        let currentComponents = calendar.dateComponents([.hour, .minute, .second], from: now)
-        
+        let currentComponents = calendar.dateComponents([.hour, .minute], from: now)
+        let currentSecond = calendar.component(.second, from: now)
+
+        guard currentSecond <= 10 else { return }
+
         for alarm in alarms where alarm.isEnabled {
             let alarmComponents = calendar.dateComponents([.hour, .minute], from: alarm.time)
             if alarmComponents.hour == currentComponents.hour &&
-               alarmComponents.minute == currentComponents.minute &&
-               currentComponents.second == 0 {
-                self.activeRingingAlarm = alarm
+               alarmComponents.minute == currentComponents.minute {
+                triggerRinging(for: alarm)
                 break
             }
         }
@@ -223,7 +246,7 @@ public struct AlarmListView: View {
     private func checkRingingTrigger() {
         if let currentID = notificationService.currentRingingAlarmID {
             if let alarm = alarms.first(where: { $0.id == currentID }) {
-                self.activeRingingAlarm = alarm
+                triggerRinging(for: alarm)
             }
         }
     }

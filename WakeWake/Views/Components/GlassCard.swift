@@ -31,22 +31,17 @@ public struct GlassCard<Content: View>: View {
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(backgroundColor)
-                    .background(
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .fill(.ultraThinMaterial)
-                    )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
                         LinearGradient(
-                            colors: [borderColor, borderColor.opacity(0.05)],
+                            colors: [borderColor, borderColor.opacity(0.1)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
                         lineWidth: 1
                     )
             )
-            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 6)
     }
 }

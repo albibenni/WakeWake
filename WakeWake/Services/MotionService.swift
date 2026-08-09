@@ -89,7 +89,7 @@ public final class MotionService: ObservableObject {
             pedometer.startUpdates(from: startDate) { [weak self] data, error in
                 guard let self = self, let data = data else { return }
                 let steps = data.numberOfSteps.intValue
-                Task { @MainActor in
+                DispatchQueue.main.async {
                     self.stepCount = steps
                     onStepProgress(steps)
                 }
@@ -106,7 +106,7 @@ public final class MotionService: ObservableObject {
                 let pitch = abs(motion.attitude.pitch)
                 let userAccelY = motion.userAcceleration.y
 
-                Task { @MainActor in
+                DispatchQueue.main.async {
                     switch self.squatState {
                     case .standing:
                         // User lowered body into squat position

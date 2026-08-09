@@ -67,7 +67,7 @@ public final class NotificationService: NSObject, ObservableObject {
         let dismissAction = UNNotificationAction(
             identifier: Self.dismissActionIdentifier,
             title: "Wake Up (Mission)",
-            options: [.foreground, .authenticationRequired]
+            options: [.foreground]
         )
 
         let category = UNNotificationCategory(
@@ -105,7 +105,7 @@ public final class NotificationService: NSObject, ObservableObject {
         // Interrupting & high-priority flags
         content.interruptionLevel = .timeSensitive
 
-        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
+        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 
         let request = UNNotificationRequest(
@@ -139,39 +139,42 @@ extension NotificationService: UNUserNotificationCenterDelegate {
     /// Handle notification when app is in FOREGROUND
     nonisolated public func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification
-    ) async -> UNNotificationPresentationOptions {
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
         let userInfo = notification.request.content.userInfo
         if let idString = userInfo["alarm_id"] as? String, let alarmID = UUID(uuidString: idString) {
-            await MainActor.run {
-                self.currentRingingAlarmID = alarmID
+            DispatchQueue.main.async {
+                NotificationService.shared.currentRingingAlarmID = alarmID
+                NotificationCenter.default.post(name: .startAlarmMissionTriggered, object: alarmID)
             }
         }
-        // Show banner, play critical sound, badge
-        return [.banner, .sound, .badge, .list]
+        completionHandler([.banner, .sound, .badge])
     }
 
     /// Handle notification action responses (e.g. user tapped notification or snooze button)
     nonisolated public func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse
-    ) async {
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         let userInfo = response.notification.request.content.userInfo
-        guard let idString = userInfo["alarm_id"] as? String, let alarmID = UUID(uuidString: idString) else { return }
-
-        switch response.actionIdentifier {
-        case NotificationService.snoozeActionIdentifier:
-            print("💤 Snooze action tapped for alarm \(alarmID)")
-            NotificationCenter.default.post(name: .snoozeAlarmTriggered, object: alarmID)
-        case NotificationService.dismissActionIdentifier, UNNotificationDefaultActionIdentifier:
-            print("🔔 Dismiss/Tap action launched app for alarm \(alarmID)")
-            await MainActor.run {
-                self.currentRingingAlarmID = alarmID
+        if let idString = userInfo["alarm_id"] as? String, let alarmID = UUID(uuidString: idString) {
+            DispatchQueue.main.async {
+                switch response.actionIdentifier {
+                case NotificationService.snoozeActionIdentifier:
+                    print("💤 Snooze action tapped for alarm \(alarmID)")
+                    NotificationCenter.default.post(name: .snoozeAlarmTriggered, object: alarmID)
+                case NotificationService.dismissActionIdentifier, UNNotificationDefaultActionIdentifier:
+                    print("🔔 Dismiss/Tap action launched app for alarm \(alarmID)")
+                    NotificationService.shared.currentRingingAlarmID = alarmID
+                    NotificationCenter.default.post(name: .startAlarmMissionTriggered, object: alarmID)
+                default:
+                    break
+                }
             }
-            NotificationCenter.default.post(name: .startAlarmMissionTriggered, object: alarmID)
-        default:
-            break
         }
+        completionHandler()
     }
 }
 
