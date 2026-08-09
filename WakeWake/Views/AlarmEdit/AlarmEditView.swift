@@ -17,7 +17,7 @@ public struct AlarmEditView: View {
     @State private var time: Date = Date()
     @State private var label: String = "Wake Up!"
     @State private var repeatDays: Set<RepeatDay> = []
-    @State private var sound: AlarmSound = .emergencyBell
+    @State private var sound: AlarmSound = .radar
     @State private var volume: Double = 1.0
     @State private var isVibrationEnabled: Bool = true
     @State private var isSnoozeEnabled: Bool = true

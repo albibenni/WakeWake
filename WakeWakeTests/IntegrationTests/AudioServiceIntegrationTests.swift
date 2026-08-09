@@ -21,7 +21,7 @@ final class AudioServiceIntegrationTests: XCTestCase {
 
     func testStartAndStopAlarmSoundCycle() {
         let audioService = AudioService.shared
-        audioService.startAlarmSound(sound: .emergencyBell, volume: 0.5)
+        audioService.startAlarmSound(sound: .radar, volume: 0.5)
 
         XCTAssertTrue(audioService.isRinging)
 

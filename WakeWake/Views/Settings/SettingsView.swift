@@ -82,7 +82,7 @@ public struct SettingsView: View {
                                     color: .cyan,
                                     textColor: .black
                                 ) {
-                                    let testSound: AlarmSound = AudioService.shared.getCustomRingtoneURL() != nil ? .customRingtone : .emergencyBell
+                                    let testSound: AlarmSound = AudioService.shared.getCustomRingtoneURL() != nil ? .customRingtone : .radar
                                     let demoAlarm = Alarm(
                                         label: "Test Mission Alarm",
                                         isEnabled: true,

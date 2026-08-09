@@ -34,6 +34,14 @@
 		500000192C63E00100000001 /* Views/Components/GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000192C63E00000000001 /* Views/Components/GlassCard.swift */; };
 		5000001A2C63E00100000001 /* Views/Components/NeonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */; };
 		5000001B2C63E00100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5000001B2C63E00000000001 /* Assets.xcassets */; };
+		700000012C63E00100000001 /* Resources/Sounds/radar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000012C63E00000000001 /* Resources/Sounds/radar.mp3 */; };
+		700000022C63E00100000001 /* Resources/Sounds/reflection.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000022C63E00000000001 /* Resources/Sounds/reflection.mp3 */; };
+		700000032C63E00100000001 /* Resources/Sounds/chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000032C63E00000000001 /* Resources/Sounds/chime.mp3 */; };
+		700000042C63E00100000001 /* Resources/Sounds/beacon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000042C63E00000000001 /* Resources/Sounds/beacon.mp3 */; };
+		700000052C63E00100000001 /* Resources/Sounds/apex.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000052C63E00000000001 /* Resources/Sounds/apex.mp3 */; };
+		700000062C63E00100000001 /* Resources/Sounds/circuit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000062C63E00000000001 /* Resources/Sounds/circuit.mp3 */; };
+		700000072C63E00100000001 /* Resources/Sounds/signal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000072C63E00000000001 /* Resources/Sounds/signal.mp3 */; };
+		700000082C63E00100000001 /* Resources/Sounds/slow_rise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 700000082C63E00000000001 /* Resources/Sounds/slow_rise.mp3 */; };
 		600000012C63E00100000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000012C63E00000000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift */; };
 		600000022C63E00100000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000022C63E00000000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift */; };
 		600000032C63E00100000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000032C63E00000000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift */; };
@@ -83,6 +91,14 @@
 		500000192C63E00000000001 /* Views/Components/GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/GlassCard.swift; sourceTree = "<group>"; };
 		5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/NeonButton.swift; sourceTree = "<group>"; };
 		5000001B2C63E00000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		700000012C63E00000000001 /* Resources/Sounds/radar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/radar.mp3; sourceTree = "<group>"; };
+		700000022C63E00000000001 /* Resources/Sounds/reflection.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/reflection.mp3; sourceTree = "<group>"; };
+		700000032C63E00000000001 /* Resources/Sounds/chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/chime.mp3; sourceTree = "<group>"; };
+		700000042C63E00000000001 /* Resources/Sounds/beacon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/beacon.mp3; sourceTree = "<group>"; };
+		700000052C63E00000000001 /* Resources/Sounds/apex.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/apex.mp3; sourceTree = "<group>"; };
+		700000062C63E00000000001 /* Resources/Sounds/circuit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/circuit.mp3; sourceTree = "<group>"; };
+		700000072C63E00000000001 /* Resources/Sounds/signal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/signal.mp3; sourceTree = "<group>"; };
+		700000082C63E00000000001 /* Resources/Sounds/slow_rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Resources/Sounds/slow_rise.mp3; sourceTree = "<group>"; };
 		5000001C2C63E00000000001 /* App/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App/Info.plist; sourceTree = "<group>"; };
 		5000001D2C63E00000000001 /* Entitlements/WakeWake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements/WakeWake.entitlements; sourceTree = "<group>"; };
 		600000002C63E00000000001 /* WakeWakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeWakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +170,14 @@
 				500000192C63E00000000001 /* Views/Components/GlassCard.swift */,
 				5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */,
 				5000001B2C63E00000000001 /* Assets.xcassets */,
+				700000012C63E00000000001 /* Resources/Sounds/radar.mp3 */,
+				700000022C63E00000000001 /* Resources/Sounds/reflection.mp3 */,
+				700000032C63E00000000001 /* Resources/Sounds/chime.mp3 */,
+				700000042C63E00000000001 /* Resources/Sounds/beacon.mp3 */,
+				700000052C63E00000000001 /* Resources/Sounds/apex.mp3 */,
+				700000062C63E00000000001 /* Resources/Sounds/circuit.mp3 */,
+				700000072C63E00000000001 /* Resources/Sounds/signal.mp3 */,
+				700000082C63E00000000001 /* Resources/Sounds/slow_rise.mp3 */,
 				5000001C2C63E00000000001 /* App/Info.plist */,
 				5000001D2C63E00000000001 /* Entitlements/WakeWake.entitlements */,
 			);
@@ -256,6 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5000001B2C63E00100000001 /* Assets.xcassets in Resources */,
+				700000012C63E00100000001 /* Resources/Sounds/radar.mp3 in Resources */,
+				700000022C63E00100000001 /* Resources/Sounds/reflection.mp3 in Resources */,
+				700000032C63E00100000001 /* Resources/Sounds/chime.mp3 in Resources */,
+				700000042C63E00100000001 /* Resources/Sounds/beacon.mp3 in Resources */,
+				700000052C63E00100000001 /* Resources/Sounds/apex.mp3 in Resources */,
+				700000062C63E00100000001 /* Resources/Sounds/circuit.mp3 in Resources */,
+				700000072C63E00100000001 /* Resources/Sounds/signal.mp3 in Resources */,
+				700000082C63E00100000001 /* Resources/Sounds/slow_rise.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

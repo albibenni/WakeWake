@@ -35,7 +35,7 @@ public final class Alarm {
         label: String = "Wake Up!",
         isEnabled: Bool = true,
         repeatDays: Set<RepeatDay> = [],
-        sound: AlarmSound = .emergencyBell,
+        sound: AlarmSound = .radar,
         volume: Double = 1.0,
         isVibrationEnabled: Bool = true,
         isSnoozeEnabled: Bool = true,
@@ -68,7 +68,7 @@ public final class Alarm {
     }
 
     public var sound: AlarmSound {
-        get { AlarmSound(rawValue: soundRawValue) ?? .emergencyBell }
+        get { AlarmSound(rawValue: soundRawValue) ?? .radar }
         set { soundRawValue = newValue.rawValue }
     }
 

@@ -8,65 +8,80 @@
 import Foundation
 
 public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
-    case emergencyBell = "emergency_bell"
-    case fireSignal = "fire_signal"
-    case highVoltage = "high_voltage"
-    case neonPulse = "neon_pulse"
-    case radarAlert = "radar_alert"
-    case militaryBugle = "military_bugle"
+    case radar = "radar"
+    case reflection = "reflection"
+    case chime = "chime"
+    case beacon = "beacon"
+    case apex = "apex"
+    case circuit = "circuit"
+    case signal = "signal"
+    case slowRise = "slow_rise"
     case customRingtone = "custom_ringtone"
 
     public var id: String { rawValue }
 
     public var displayName: String {
         switch self {
-        case .emergencyBell: return "Emergency Siren 🚨"
-        case .fireSignal: return "Fire Signal Alarm 🔥"
-        case .highVoltage: return "High Voltage Shock ⚡️"
-        case .neonPulse: return "Neon Pulse Synth 🔊"
-        case .radarAlert: return "Submarine Radar 🚢"
-        case .militaryBugle: return "Reveille Bugle 🎺"
+        case .radar: return "Radar (Default Classic) 🚨"
+        case .reflection: return "Reflection 🎵"
+        case .chime: return "Chime 🔔"
+        case .beacon: return "Beacon 🗼"
+        case .apex: return "Apex 🏔️"
+        case .circuit: return "Circuit ⚡️"
+        case .signal: return "Signal 📡"
+        case .slowRise: return "Slow Rise 🌅"
         case .customRingtone:
             let name = UserDefaults.standard.string(forKey: "CustomRingtoneDisplayName") ?? "Custom Sound"
             return "🎵 \(name)"
         }
     }
 
-    /// System or bundle audio filename with extension
+    /// Sound audio filename for bundle loading
     public var filename: String {
+        return "\(rawValue).wav"
+    }
+
+    /// System audio filename in iOS /System/Library/Audio/UISounds/
+    public var systemAudioName: String {
         switch self {
-        case .emergencyBell: return "emergency_bell.mp3"
-        case .fireSignal: return "fire_signal.mp3"
-        case .highVoltage: return "high_voltage.mp3"
-        case .neonPulse: return "neon_pulse.mp3"
-        case .radarAlert: return "radar_alert.mp3"
-        case .militaryBugle: return "military_bugle.mp3"
-        case .customRingtone: return "custom_ringtone"
+        case .radar: return "Radar"
+        case .reflection: return "Reflection"
+        case .chime: return "Chime"
+        case .beacon: return "Beacon"
+        case .apex: return "Apex"
+        case .circuit: return "Circuit"
+        case .signal: return "Signal"
+        case .slowRise: return "SlowRise"
+        case .customRingtone: return "Radar"
         }
     }
 
     /// Native iOS built-in system sound ID
     public var systemSoundID: UInt32 {
         switch self {
-        case .emergencyBell: return 1005 // Alarm Siren Alert
-        case .fireSignal: return 1016   // Rapid Pulse Alert
-        case .highVoltage: return 1022  // Telegraph Electric Buzz
-        case .neonPulse: return 1025    // Fanfare Synth Pulse
-        case .radarAlert: return 1033   // Radar Ping Alert
-        case .militaryBugle: return 1007 // Reveille Bugle Alert
+        case .radar: return 1005       // Standard Radar Alarm
+        case .reflection: return 1000  // iOS Reflection Tone
+        case .chime: return 1008       // Chime
+        case .beacon: return 1021      // Beacon
+        case .apex: return 1026        // Apex Tone
+        case .circuit: return 1023     // Circuit Tone
+        case .signal: return 1016      // Signal Pulse Tone
+        case .slowRise: return 1027    // Slow Rise Alarm
         case .customRingtone: return 1005
         }
     }
 
-    /// Sound description for sound picker preview
+    /// Sound description for sound picker
     public var description: String {
         switch self {
-        case .emergencyBell: return "Maximum volume piercing siren designed for deep sleepers"
-        case .fireSignal: return "Rapid high-frequency pulse that guarantees instant awakening"
-        case .highVoltage: return "Rhythmic electric buzz sound with strong bass frequencies"
-        case .neonPulse: return "Futuristic energetic synth loop"
-        case .radarAlert: return "Repeating acoustic ping that overrides ambient room noise"
-        case .militaryBugle: return "Classic military wake up call"
+        case .radar: return "Standard iOS high-volume alarm siren"
+        case .reflection: return "Standard iOS melodic ringtone"
+        case .chime: return "Gentle repeating acoustic chime"
+        case .beacon: return "Rhythmic pulsating beacon tone"
+        case .apex: return "High altitude crisp acoustic alarm"
+        case .circuit: return "Energetic electronic pulse sequence"
+        case .signal: return "Rapid high-frequency signal alert"
+        case .slowRise: return "Gradually building morning wake-up sound"
         case .customRingtone: return "Your custom imported sound file from iPhone Storage / Files"
         }
     }

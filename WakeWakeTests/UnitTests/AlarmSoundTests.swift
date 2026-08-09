@@ -18,8 +18,8 @@ final class AlarmSoundTests: XCTestCase {
     }
 
     func testAlarmSoundRawValueDecoding() {
-        let sound = AlarmSound(rawValue: "emergency_bell")
-        XCTAssertEqual(sound, .emergencyBell)
+        let sound = AlarmSound(rawValue: "radar")
+        XCTAssertEqual(sound, .radar)
 
         let invalidSound = AlarmSound(rawValue: "non_existent_audio_file")
         XCTAssertNil(invalidSound, "Invalid sound raw value must evaluate to nil")
