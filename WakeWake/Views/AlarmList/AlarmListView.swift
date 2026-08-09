@@ -226,7 +226,9 @@ public struct AlarmListView: View {
         }.sorted()
 
         guard let nearestDate = nextDates.first else {
-            countdownString = "No upcoming alarms active"
+            if countdownString != "No upcoming alarms active" {
+                countdownString = "No upcoming alarms active"
+            }
             return
         }
 
@@ -234,12 +236,17 @@ public struct AlarmListView: View {
         let hours = Int(diff) / 3600
         let minutes = (Int(diff) % 3600) / 60
 
+        let newString: String
         if hours > 0 {
-            countdownString = "Ringing in \(hours)h \(minutes)m"
+            newString = "Ringing in \(hours)h \(minutes)m"
         } else if minutes > 0 {
-            countdownString = "Ringing in \(minutes) minutes"
+            newString = "Ringing in \(minutes) minutes"
         } else {
-            countdownString = "Ringing in under a minute"
+            newString = "Ringing in under a minute"
+        }
+
+        if countdownString != newString {
+            countdownString = newString
         }
     }
 
