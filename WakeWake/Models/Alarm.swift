@@ -134,7 +134,7 @@ public final class Alarm {
             return nil
         } else {
             // Repeating alarm
-            var checkDate = currentDate
+            let checkDate = currentDate
             for dayOffset in 0...7 {
                 guard let candidateDate = calendar.date(byAdding: .day, value: dayOffset, to: checkDate) else { continue }
                 var candidateComponents = calendar.dateComponents([.year, .month, .day, .weekday], from: candidateDate)

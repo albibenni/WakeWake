@@ -97,7 +97,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1000000E2C63E00000000001 /* Frameworks */ = {
+		1000003E2C63E00000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,7 +183,7 @@
 			buildConfigurationList = 100000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWake" */;
 			buildPhases = (
 				100000122C63E00000000001 /* Sources */,
-				1000000E2C63E00000000001 /* Frameworks */,
+				1000003E2C63E00000000001 /* Frameworks */,
 				100000132C63E00000000001 /* Resources */,
 			);
 			buildRules = (
