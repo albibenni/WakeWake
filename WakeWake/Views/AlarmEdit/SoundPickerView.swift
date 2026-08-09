@@ -73,6 +73,7 @@ public struct SoundPickerView: View {
                         ForEach(AlarmSound.allCases) { sound in
                             Button(action: {
                                 selectedSound = sound
+                                HapticService.shared.lightImpact()
                                 AudioService.shared.previewSound(sound: sound, volume: volume)
                             }) {
                                 HStack(spacing: 16) {
@@ -97,8 +98,10 @@ public struct SoundPickerView: View {
                                         .font(.caption)
                                         .foregroundColor(.cyan)
                                 }
-                                .padding(.vertical, 6)
+                                .padding(.vertical, 8)
+                                .contentShape(Rectangle())
                             }
+                            .buttonStyle(.plain)
                             .listRowBackground(Color.white.opacity(0.06))
                         }
                     }

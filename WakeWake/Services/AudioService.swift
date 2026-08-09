@@ -97,9 +97,54 @@ public final class AudioService: NSObject, ObservableObject {
         AudioServicesPlayAlertSound(SystemSoundID(1005))
     }
 
-    /// Preview sound for picker UI
+    /// Preview sound for picker UI (plays preview cycle once)
     public func previewSound(sound: AlarmSound, volume: Double = 1.0) {
-        startAlarmSound(sound: sound, volume: volume)
+        configureAudioSession()
+        stopAlarmSound()
+
+        // 1. Custom ringtone preview
+        if sound == .customRingtone, let customURL = getCustomRingtoneURL() {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: customURL)
+                audioPlayer?.numberOfLoops = 0
+                audioPlayer?.volume = Float(volume)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+                print("🔊 Previewing custom ringtone: \(customURL.lastPathComponent)")
+                return
+            } catch {
+                print("⚠️ Failed previewing custom ringtone: \(error)")
+            }
+        }
+
+        // 2. Bundled audio file preview
+        if let soundURL = Bundle.main.url(forResource: sound.rawValue, withExtension: "mp3") ??
+                            Bundle.main.url(forResource: sound.rawValue, withExtension: "wav") {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer?.numberOfLoops = 0
+                audioPlayer?.volume = Float(volume)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+                print("🔊 Previewing bundled sound '\(sound.displayName)'")
+                return
+            } catch {}
+        }
+
+        // 3. Distinct sound option WAV preview
+        if let soundWavURL = ensureSoundFileExists(for: sound) {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundWavURL)
+                audioPlayer?.numberOfLoops = 0
+                audioPlayer?.volume = Float(volume)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+                print("🚨 Previewing sound WAV '\(sound.rawValue)'")
+                return
+            } catch {}
+        }
+
+        AudioServicesPlayAlertSound(SystemSoundID(1005))
     }
 
     /// Stop playing alarm sound

@@ -37,7 +37,11 @@ final class NotificationServiceIntegrationTests: XCTestCase {
 
     func testScheduleNearTermAlarmUsesTimeIntervalTrigger() async {
         let now = Date()
-        let nearTermDate = now.addingTimeInterval(30)
+        let calendar = Calendar.current
+        guard let nearTermDate = calendar.date(byAdding: .minute, value: 5, to: now) else {
+            XCTFail("Could not create near term date")
+            return
+        }
         let alarm = Alarm(time: nearTermDate, isEnabled: true)
 
         await NotificationService.shared.scheduleNotification(for: alarm)
@@ -46,6 +50,6 @@ final class NotificationServiceIntegrationTests: XCTestCase {
         let matchingRequest = requests.first(where: { $0.identifier == alarm.id.uuidString })
 
         XCTAssertNotNil(matchingRequest, "Near term alarm notification must be scheduled!")
-        XCTAssertTrue(matchingRequest?.trigger is UNTimeIntervalNotificationTrigger, "Alarms scheduled under 1 hour must use UNTimeIntervalNotificationTrigger for guaranteed delivery!")
+        XCTAssertTrue(matchingRequest?.trigger is UNTimeIntervalNotificationTrigger, "Alarms scheduled under 1 hour must use UNTimeIntervalNotificationTrigger!")
     }
 }

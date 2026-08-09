@@ -125,8 +125,13 @@ public final class Alarm {
             candidateComponents.second = 0
             
             if let candidate = calendar.date(from: candidateComponents) {
-                // If candidate is in the future or within the current minute (last 59s), schedule for today
-                if candidate.timeIntervalSince(currentDate) > -59 {
+                let currentHour = calendar.component(.hour, from: currentDate)
+                let currentMinute = calendar.component(.minute, from: currentDate)
+
+                if targetHour == currentHour && targetMinute == currentMinute {
+                    // Alarm is for the current minute: schedule 2 seconds in the future
+                    return currentDate.addingTimeInterval(2)
+                } else if candidate > currentDate {
                     return candidate
                 } else {
                     return calendar.date(byAdding: .day, value: 1, to: candidate)
