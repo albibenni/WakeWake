@@ -12,6 +12,7 @@ public struct SoundPickerView: View {
     @Binding var volume: Double
 
     @Environment(\.dismiss) private var dismiss
+    @State private var showFileImporter: Bool = false
 
     public var body: some View {
         NavigationStack {
@@ -36,6 +37,36 @@ public struct SoundPickerView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 12)
+
+                    // Import Custom Ringtone Button
+                    GlassCard(cornerRadius: 20, borderColor: .yellow.opacity(0.4)) {
+                        Button(action: {
+                            showFileImporter = true
+                        }) {
+                            HStack {
+                                Image(systemName: "folder.badge.plus")
+                                    .font(.title2)
+                                    .foregroundColor(.yellow)
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Import Custom Ringtone")
+                                        .font(.subheadline)
+                                        .bold()
+                                        .foregroundColor(.white)
+
+                                    Text(AudioService.shared.getCustomRingtoneURL() != nil ? "Currently: \(AudioService.shared.getCustomRingtoneName())" : "Pick .mp3, .wav, or .m4a from iPhone Files app")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "square.and.arrow.down")
+                                    .foregroundColor(.yellow)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
 
                     // Sound List
                     List {
@@ -76,6 +107,23 @@ public struct SoundPickerView: View {
             }
             .navigationTitle("Alarm Sound")
             .navigationBarTitleDisplayMode(.inline)
+            .fileImporter(
+                isPresented: $showFileImporter,
+                allowedContentTypes: [.audio],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    if let selectedURL = urls.first {
+                        if AudioService.shared.saveCustomRingtone(from: selectedURL) != nil {
+                            selectedSound = .customRingtone
+                            AudioService.shared.previewSound(sound: .customRingtone, volume: volume)
+                        }
+                    }
+                case .failure(let error):
+                    print("File import failed: \(error)")
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {

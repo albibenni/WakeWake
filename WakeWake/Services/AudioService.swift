@@ -28,7 +28,6 @@ public final class AudioService: NSObject, ObservableObject {
     public func configureAudioSession() {
         do {
             let session = AVAudioSession.sharedInstance()
-            // .playback category ensures audio plays even when mute switch is ON or screen is locked
             try session.setCategory(.playback, mode: .default, options: [.duckOthers])
             try session.setActive(true)
             print("🔊 AudioSession successfully configured for Alarm Playback.")
@@ -48,12 +47,27 @@ public final class AudioService: NSObject, ObservableObject {
 
         isRinging = true
 
-        // Attempt to load bundle sound file
+        // 1. Check for custom user ringtone imported from iOS Files app
+        if sound == .customRingtone, let customURL = getCustomRingtoneURL() {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: customURL)
+                audioPlayer?.numberOfLoops = -1 // Loop indefinitely
+                audioPlayer?.volume = Float(volume)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+                print("🔊 Playing custom imported ringtone: \(customURL.lastPathComponent)")
+                return
+            } catch {
+                print("⚠️ Failed to play custom ringtone: \(error.localizedDescription)")
+            }
+        }
+
+        // 2. Attempt to load bundled audio file
         if let soundURL = Bundle.main.url(forResource: sound.rawValue, withExtension: "mp3") ??
                             Bundle.main.url(forResource: sound.rawValue, withExtension: "wav") {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                audioPlayer?.numberOfLoops = -1 // Loop indefinitely until mission complete
+                audioPlayer?.numberOfLoops = -1
                 audioPlayer?.volume = Float(volume)
                 audioPlayer?.prepareToPlay()
                 audioPlayer?.play()
@@ -64,35 +78,35 @@ public final class AudioService: NSObject, ObservableObject {
             }
         }
 
-        // Fallback: Use procedural tone generator via AVAudioEngine if audio files are missing
-        startProceduralAlarmTone(volume: volume)
+        // 3. Fallback: Play generated high-volume alarm siren WAV file via AVAudioPlayer
+        if let sirenURL = ensureDefaultSirenFileExists() {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: sirenURL)
+                audioPlayer?.numberOfLoops = -1 // Loop indefinitely
+                audioPlayer?.volume = Float(volume)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+                print("🚨 Playing default emergency siren WAV at volume \(volume)")
+                return
+            } catch {
+                print("❌ Failed to play siren WAV: \(error.localizedDescription)")
+            }
+        }
+
+        // Secondary fallback alert sound
+        AudioServicesPlayAlertSound(SystemSoundID(1005))
     }
 
     /// Preview sound for picker UI
     public func previewSound(sound: AlarmSound, volume: Double = 1.0) {
-        configureAudioSession()
-        stopAlarmSound()
-
-        if let soundURL = Bundle.main.url(forResource: sound.rawValue, withExtension: "mp3") ??
-                            Bundle.main.url(forResource: sound.rawValue, withExtension: "wav") {
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                audioPlayer?.numberOfLoops = 0 // Play once
-                audioPlayer?.volume = Float(volume)
-                audioPlayer?.play()
-                return
-            } catch {}
-        }
-
-        // Fallback preview
-        AudioServicesPlaySystemSound(1005) // System Alarm Beep
+        startAlarmSound(sound: sound, volume: volume)
     }
 
     /// Stop playing alarm sound
     public func stopAlarmSound() {
         isRinging = false
 
-        if let player = audioPlayer, player.isPlaying {
+        if let player = audioPlayer {
             player.stop()
         }
         audioPlayer = nil
@@ -102,61 +116,98 @@ public final class AudioService: NSObject, ObservableObject {
             audioEngine = nil
             isPlayingToneEngine = false
         }
-
-        do {
-            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-        } catch {}
     }
 
-    // MARK: - Procedural Synth Tone Engine (Fallback High Volume Siren)
-    private func startProceduralAlarmTone(volume: Double) {
-        isPlayingToneEngine = true
-        let engine = AVAudioEngine()
-        let mainMixer = engine.mainMixerNode
-        let hardwareSampleRate = mainMixer.outputFormat(forBus: 0).sampleRate
-        let sampleRate: Double = (hardwareSampleRate > 0 && !hardwareSampleRate.isNaN) ? hardwareSampleRate : 44100.0
-        
-        guard let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1) else {
-            AudioServicesPlayAlertSound(SystemSoundID(1005))
-            return
-        }
+    // MARK: - Custom Ringtone Storage Management
+    public func saveCustomRingtone(from sourceURL: URL) -> String? {
+        guard sourceURL.startAccessingSecurityScopedResource() else { return nil }
+        defer { sourceURL.stopAccessingSecurityScopedResource() }
 
-        var sampleTime: Double = 0.0
-        let sourceNode = AVAudioSourceNode { _, _, frameCount, audioBufferList -> OSStatus in
-            let ablPointer = UnsafeMutableAudioBufferListPointer(audioBufferList)
-            let frequency: Double = 880.0 // A5 pitch siren
-            let phaseIncrement = (2.0 * Double.pi * frequency) / sampleRate
-
-            for frame in 0..<Int(frameCount) {
-                let sirenModulation = sin(2.0 * Double.pi * 4.0 * sampleTime / sampleRate) // 4Hz pulse
-                let val = sin(sampleTime * phaseIncrement) * (sirenModulation > 0 ? 1.0 : 0.2) * volume
-                let sampleVal = Float(val.isNaN ? 0.0 : val)
-                sampleTime += 1.0
-
-                for buffer in ablPointer {
-                    let buf: UnsafeMutableBufferPointer<Float> = UnsafeMutableBufferPointer(buffer)
-                    if frame < buf.count {
-                        buf[frame] = sampleVal
-                    }
-                }
-            }
-            return noErr
-        }
-
-        engine.attach(sourceNode)
-        engine.connect(sourceNode, to: mainMixer, format: format)
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let ext = sourceURL.pathExtension.isEmpty ? "mp3" : sourceURL.pathExtension
+        let destURL = docs.appendingPathComponent("custom_ringtone.\(ext)")
 
         do {
-            try engine.start()
-            self.audioEngine = engine
-            print("🚨 Started procedural emergency siren fallback.")
+            if FileManager.default.fileExists(atPath: destURL.path) {
+                try FileManager.default.removeItem(at: destURL)
+            }
+            try FileManager.default.copyItem(at: sourceURL, to: destURL)
+            let displayName = sourceURL.deletingPathExtension().lastPathComponent
+            UserDefaults.standard.set(destURL.lastPathComponent, forKey: "CustomRingtoneFilename")
+            UserDefaults.standard.set(displayName, forKey: "CustomRingtoneDisplayName")
+            print("✅ Successfully imported custom ringtone: \(displayName)")
+            return displayName
         } catch {
-            print("❌ Failed to start procedural audio engine: \(error)")
-            // System sound emergency fallback
-            AudioServicesPlayAlertSound(SystemSoundID(1005))
+            print("❌ Failed to copy custom ringtone: \(error)")
+            return nil
+        }
+    }
+
+    public func getCustomRingtoneURL() -> URL? {
+        guard let filename = UserDefaults.standard.string(forKey: "CustomRingtoneFilename") else { return nil }
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = docs.appendingPathComponent(filename)
+        return FileManager.default.fileExists(atPath: url.path) ? url : nil
+    }
+
+    public func getCustomRingtoneName() -> String {
+        return UserDefaults.standard.string(forKey: "CustomRingtoneDisplayName") ?? "Custom Sound"
+    }
+
+    // MARK: - Procedural Siren WAV Generator
+    private func ensureDefaultSirenFileExists() -> URL? {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = docs.appendingPathComponent("alarm_siren.wav")
+
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            return fileURL
         }
 
-        // Always play system sound alert once as secondary audio output
-        AudioServicesPlayAlertSound(SystemSoundID(1005))
+        let sampleRate: Float = 44100.0
+        let duration: Float = 1.0
+        let numSamples = Int(sampleRate * duration)
+        var samples = [Int16]()
+        samples.reserveCapacity(numSamples)
+
+        for i in 0..<numSamples {
+            let time = Float(i) / sampleRate
+            let sirenMod = sin(2.0 * .pi * 4.0 * time)
+            let freq: Float = sirenMod > 0 ? 950.0 : 750.0
+            let value = sin(2.0 * .pi * freq * time)
+            let pcmValue = Int16(max(-32767, min(32767, value * 32767.0)))
+            samples.append(pcmValue)
+        }
+
+        var header = Data()
+        let subchunk2Size = UInt32(numSamples * 2)
+        let chunkSize = UInt32(36 + subchunk2Size)
+
+        header.append(contentsOf: "RIFF".utf8)
+        header.append(contentsOf: withUnsafeBytes(of: chunkSize.littleEndian) { Array($0) })
+        header.append(contentsOf: "WAVEfmt ".utf8)
+        header.append(contentsOf: withUnsafeBytes(of: UInt32(16).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt16(1).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt16(1).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt32(44100).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt32(88200).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt16(2).littleEndian) { Array($0) })
+        header.append(contentsOf: withUnsafeBytes(of: UInt16(16).littleEndian) { Array($0) })
+        header.append(contentsOf: "data".utf8)
+        header.append(contentsOf: withUnsafeBytes(of: subchunk2Size.littleEndian) { Array($0) })
+
+        var wavData = header
+        samples.withUnsafeBufferPointer { buffer in
+            let rawPtr = UnsafeRawPointer(buffer.baseAddress!)
+            wavData.append(rawPtr.assumingMemoryBound(to: UInt8.self), count: numSamples * 2)
+        }
+
+        do {
+            try wavData.write(to: fileURL)
+            print("✅ Generated default high-volume alarm_siren.wav successfully!")
+            return fileURL
+        } catch {
+            print("❌ Failed to write siren WAV file: \(error)")
+            return nil
+        }
     }
 }

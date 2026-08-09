@@ -14,6 +14,7 @@ public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
     case neonPulse = "neon_pulse"
     case radarAlert = "radar_alert"
     case militaryBugle = "military_bugle"
+    case customRingtone = "custom_ringtone"
 
     public var id: String { rawValue }
 
@@ -25,6 +26,9 @@ public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
         case .neonPulse: return "Neon Pulse Synth 🔊"
         case .radarAlert: return "Submarine Radar 🚢"
         case .militaryBugle: return "Reveille Bugle 🎺"
+        case .customRingtone:
+            let name = UserDefaults.standard.string(forKey: "CustomRingtoneDisplayName") ?? "Custom Sound"
+            return "🎵 \(name)"
         }
     }
 
@@ -37,6 +41,7 @@ public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
         case .neonPulse: return "neon_pulse.mp3"
         case .radarAlert: return "radar_alert.mp3"
         case .militaryBugle: return "military_bugle.mp3"
+        case .customRingtone: return "custom_ringtone"
         }
     }
 
@@ -49,6 +54,7 @@ public enum AlarmSound: String, Codable, CaseIterable, Identifiable {
         case .neonPulse: return "Futuristic energetic synth loop"
         case .radarAlert: return "Repeating acoustic ping that overrides ambient room noise"
         case .militaryBugle: return "Classic military wake up call"
+        case .customRingtone: return "Your custom imported sound file from iPhone Storage / Files"
         }
     }
 }
