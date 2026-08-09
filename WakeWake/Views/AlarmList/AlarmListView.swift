@@ -184,16 +184,35 @@ public struct AlarmListView: View {
         }
     }
 
+    @State private var lastTriggeredAlarmID: UUID? = nil
+    @State private var lastTriggeredMinute: Int = -1
+
     private func triggerRinging(for alarm: Alarm) {
+        let calendar = Calendar.current
+        let currentMinute = calendar.component(.minute, from: Date())
+
+        // Prevent re-triggering the same alarm within the same minute
+        if lastTriggeredAlarmID == alarm.id && lastTriggeredMinute == currentMinute {
+            return
+        }
+
         guard activeRingingAlarm?.id != alarm.id else { return }
+
+        lastTriggeredAlarmID = alarm.id
+        lastTriggeredMinute = currentMinute
+
         DispatchQueue.main.async {
             self.showingSettings = false
             self.showingAddAlarm = false
             self.alarmToEdit = nil
             self.showingNightstandMode = false
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 self.activeRingingAlarm = alarm
+                AudioService.shared.startAlarmSound(sound: alarm.sound, volume: alarm.volume)
+                if alarm.isVibrationEnabled {
+                    HapticService.shared.startContinuousVibration()
+                }
             }
         }
     }

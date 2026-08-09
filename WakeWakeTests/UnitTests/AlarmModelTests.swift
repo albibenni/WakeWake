@@ -87,4 +87,17 @@ final class AlarmModelTests: XCTestCase {
         // Expected behavior: Past time for a one-off alarm rolls over to tomorrow (must be strictly in the future)
         XCTAssertGreaterThan(triggerDate!, now, "Trigger date must never be in the past!")
     }
+
+    func testCurrentMinuteAlarmScheduledForToday() {
+        let now = Date()
+        let calendar = Calendar.current
+
+        // Setting an alarm for current hour and minute (e.g. 10s into current minute)
+        let alarm = Alarm(time: now, repeatDays: [])
+        let triggerDate = alarm.nextTriggerDate(from: now)
+
+        XCTAssertNotNil(triggerDate)
+        let isSameDay = calendar.isDate(triggerDate!, inSameDayAs: now)
+        XCTAssertTrue(isSameDay, "Alarm set for current minute must be scheduled for TODAY, not tomorrow!")
+    }
 }

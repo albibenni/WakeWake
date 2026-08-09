@@ -34,4 +34,18 @@ final class NotificationServiceIntegrationTests: XCTestCase {
 
         XCTAssertFalse(containsDisabled, "Disabled alarm must never add a pending notification request!")
     }
+
+    func testScheduleNearTermAlarmUsesTimeIntervalTrigger() async {
+        let now = Date()
+        let nearTermDate = now.addingTimeInterval(30)
+        let alarm = Alarm(time: nearTermDate, isEnabled: true)
+
+        await NotificationService.shared.scheduleNotification(for: alarm)
+
+        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+        let matchingRequest = requests.first(where: { $0.identifier == alarm.id.uuidString })
+
+        XCTAssertNotNil(matchingRequest, "Near term alarm notification must be scheduled!")
+        XCTAssertTrue(matchingRequest?.trigger is UNTimeIntervalNotificationTrigger, "Alarms scheduled under 1 hour must use UNTimeIntervalNotificationTrigger for guaranteed delivery!")
+    }
 }

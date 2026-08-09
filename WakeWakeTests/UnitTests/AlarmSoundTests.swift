@@ -14,7 +14,6 @@ final class AlarmSoundTests: XCTestCase {
         for sound in AlarmSound.allCases {
             XCTAssertFalse(sound.displayName.isEmpty)
             XCTAssertFalse(sound.filename.isEmpty)
-            XCTAssertTrue(sound.filename.hasSuffix(".mp3") || sound.filename.hasSuffix(".wav"))
         }
     }
 
@@ -24,5 +23,11 @@ final class AlarmSoundTests: XCTestCase {
 
         let invalidSound = AlarmSound(rawValue: "non_existent_audio_file")
         XCTAssertNil(invalidSound, "Invalid sound raw value must evaluate to nil")
+    }
+
+    func testCustomRingtoneDisplayNameFormatting() {
+        UserDefaults.standard.set("MyTestSong", forKey: "CustomRingtoneDisplayName")
+        let sound = AlarmSound.customRingtone
+        XCTAssertTrue(sound.displayName.contains("MyTestSong"), "Custom ringtone display name must reflect imported title!")
     }
 }

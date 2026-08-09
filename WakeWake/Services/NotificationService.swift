@@ -105,8 +105,14 @@ public final class NotificationService: NSObject, ObservableObject {
         // Interrupting & high-priority flags
         content.interruptionLevel = .timeSensitive
 
-        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        let timeInterval = triggerDate.timeIntervalSinceNow
+        let trigger: UNNotificationTrigger
+        if timeInterval > 0 && timeInterval <= 3600 {
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, timeInterval), repeats: false)
+        } else {
+            let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
+            trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        }
 
         let request = UNNotificationRequest(
             identifier: alarm.id.uuidString,

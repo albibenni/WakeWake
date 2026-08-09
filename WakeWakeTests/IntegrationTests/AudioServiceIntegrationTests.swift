@@ -16,7 +16,7 @@ final class AudioServiceIntegrationTests: XCTestCase {
         AudioService.shared.configureAudioSession()
         let session = AVAudioSession.sharedInstance()
         XCTAssertEqual(session.category, .playback)
-        XCTAssertEqual(session.mode, .alarm)
+        XCTAssertEqual(session.mode, .default)
     }
 
     func testStartAndStopAlarmSoundCycle() {

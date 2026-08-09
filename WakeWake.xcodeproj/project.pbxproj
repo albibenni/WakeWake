@@ -86,14 +86,14 @@
 		5000001C2C63E00000000001 /* App/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App/Info.plist; sourceTree = "<group>"; };
 		5000001D2C63E00000000001 /* Entitlements/WakeWake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements/WakeWake.entitlements; sourceTree = "<group>"; };
 		600000002C63E00000000001 /* WakeWakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeWakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		600000012C63E00000000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmModelTests.swift; sourceTree = "<group>"; };
-		600000022C63E00000000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/MathMissionTests.swift; sourceTree = "<group>"; };
-		600000032C63E00000000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/RepeatDayTests.swift; sourceTree = "<group>"; };
-		600000042C63E00000000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmSoundTests.swift; sourceTree = "<group>"; };
-		600000052C63E00000000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift; sourceTree = "<group>"; };
-		600000062C63E00000000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		600000072C63E00000000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		600000082C63E00000000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000012C63E00000000001 /* UnitTests/AlarmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests/AlarmModelTests.swift; sourceTree = "<group>"; };
+		600000022C63E00000000001 /* UnitTests/MathMissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests/MathMissionTests.swift; sourceTree = "<group>"; };
+		600000032C63E00000000001 /* UnitTests/RepeatDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests/RepeatDayTests.swift; sourceTree = "<group>"; };
+		600000042C63E00000000001 /* UnitTests/AlarmSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests/AlarmSoundTests.swift; sourceTree = "<group>"; };
+		600000052C63E00000000001 /* IntegrationTests/AlarmSchedulerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests/AlarmSchedulerIntegrationTests.swift; sourceTree = "<group>"; };
+		600000062C63E00000000001 /* IntegrationTests/NotificationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests/NotificationServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000072C63E00000000001 /* IntegrationTests/AudioServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests/AudioServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000082C63E00000000001 /* IntegrationTests/MotionServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests/MotionServiceIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +482,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,6 +496,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
