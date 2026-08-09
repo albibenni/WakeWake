@@ -1,8 +1,8 @@
-# ⏰ WakeWake — iOS Action Alarm App (Alarmy-style)
+# ⏰ WakeWake — iOS Action Alarm App
 
 **WakeWake** is a high-performance, loud action alarm clock application built for iOS 17/18+ using **Swift 6**, **SwiftUI**, **SwiftData**, **UserNotifications Critical Alerts**, and **CoreMotion**.
 
-Inspired by apps like *Alarmy*, WakeWake prevents users from falling back asleep by forcing them to complete interactive **Wake-Up Missions** before turning off the alarm siren.
+WakeWake prevents users from falling back asleep by forcing them to complete interactive **Wake-Up Missions** before turning off the alarm siren.
 
 ---
 
