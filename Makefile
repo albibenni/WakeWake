@@ -21,10 +21,11 @@ build: ## Build the WakeWake app target for iOS Simulator
 		-derivedDataPath $(DERIVED_DATA_PATH)
 
 test: ## Run unit and integration test suite
-	@echo "🧪 Running unit & integration tests on $(SIMULATOR_NAME)..."
+	@echo "🧪 Running unit & integration tests..."
 	xcodebuild test \
 		-scheme $(SCHEME) \
 		-destination 'platform=iOS Simulator,name=$(SIMULATOR_NAME)' \
+		-parallel-testing-enabled NO \
 		-derivedDataPath $(DERIVED_DATA_PATH)
 
 coverage: ## Run test suite with code coverage enabled
@@ -32,6 +33,7 @@ coverage: ## Run test suite with code coverage enabled
 	xcodebuild test \
 		-scheme $(SCHEME) \
 		-destination 'platform=iOS Simulator,name=$(SIMULATOR_NAME)' \
+		-parallel-testing-enabled NO \
 		-enableCodeCoverage YES \
 		-derivedDataPath $(DERIVED_DATA_PATH)
 	@echo "✅ Code coverage results stored in $(DERIVED_DATA_PATH)/Logs/Test/"

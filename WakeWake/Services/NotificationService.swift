@@ -95,15 +95,16 @@ public final class NotificationService: NSObject, ObservableObject {
         content.categoryIdentifier = Self.alarmCategoryIdentifier
         content.userInfo = ["alarm_id": alarm.id.uuidString]
 
-        // Sound configuration: Critical Alert if authorized, otherwise standard loud sound
+        // Sound & Interruption Level configuration
+        content.relevanceScore = 1.0 // Prioritize at top of iOS Notification Center & Lock Screen
+
         if isCriticalAlertAuthorized {
+            content.interruptionLevel = .critical
             content.sound = UNNotificationSound.defaultCriticalSound(withAudioVolume: Float(alarm.volume))
         } else {
+            content.interruptionLevel = .timeSensitive
             content.sound = UNNotificationSound.default
         }
-
-        // Interrupting & high-priority flags
-        content.interruptionLevel = .timeSensitive
 
         let timeInterval = triggerDate.timeIntervalSinceNow
         let trigger: UNNotificationTrigger
