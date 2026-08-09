@@ -12,7 +12,7 @@ public struct MissionContainerView: View {
     let onCompleted: () -> Void
     let onFailed: () -> Void
 
-    @State private var timeRemaining: Int = 60
+    @State private var timeRemaining: Int = 45
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     public init(alarm: Alarm, onCompleted: @escaping () -> Void, onFailed: @escaping () -> Void) {
