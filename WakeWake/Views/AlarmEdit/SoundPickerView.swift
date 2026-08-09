@@ -13,6 +13,7 @@ public struct SoundPickerView: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var showFileImporter: Bool = false
+    @State private var playingPreviewSound: AlarmSound? = nil
 
     public var body: some View {
         NavigationStack {
@@ -71,10 +72,19 @@ public struct SoundPickerView: View {
                     // Sound List
                     List {
                         ForEach(AlarmSound.allCases) { sound in
+                            let isCurrentlyPlaying = (playingPreviewSound == sound)
+
                             Button(action: {
                                 selectedSound = sound
                                 HapticService.shared.lightImpact()
-                                AudioService.shared.previewSound(sound: sound, volume: volume)
+
+                                if isCurrentlyPlaying {
+                                    AudioService.shared.stopAlarmSound()
+                                    playingPreviewSound = nil
+                                } else {
+                                    playingPreviewSound = sound
+                                    AudioService.shared.previewSound(sound: sound, volume: volume)
+                                }
                             }) {
                                 HStack(spacing: 16) {
                                     Image(systemName: selectedSound == sound ? "checkmark.circle.fill" : "circle")
@@ -94,11 +104,14 @@ public struct SoundPickerView: View {
 
                                     Spacer()
 
-                                    Image(systemName: "play.fill")
-                                        .font(.caption)
-                                        .foregroundColor(.cyan)
+                                    Image(systemName: isCurrentlyPlaying ? "pause.fill" : "play.fill")
+                                        .font(.system(size: 13, weight: .bold))
+                                        .foregroundColor(isCurrentlyPlaying ? .yellow : .cyan)
+                                        .padding(8)
+                                        .background(isCurrentlyPlaying ? Color.yellow.opacity(0.25) : Color.cyan.opacity(0.15))
+                                        .clipShape(Circle())
                                 }
-                                .padding(.vertical, 8)
+                                .padding(.vertical, 6)
                                 .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
@@ -120,12 +133,17 @@ public struct SoundPickerView: View {
                     if let selectedURL = urls.first {
                         if AudioService.shared.saveCustomRingtone(from: selectedURL) != nil {
                             selectedSound = .customRingtone
+                            playingPreviewSound = .customRingtone
                             AudioService.shared.previewSound(sound: .customRingtone, volume: volume)
                         }
                     }
                 case .failure(let error):
                     print("File import failed: \(error)")
                 }
+            }
+            .onDisappear {
+                AudioService.shared.stopAlarmSound()
+                playingPreviewSound = nil
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
