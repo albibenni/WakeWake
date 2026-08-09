@@ -7,41 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		500000012C63E00100000001 /* WakeWakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000012C63E00000000001 /* WakeWakeApp.swift */; };
-		500000022C63E00100000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000022C63E00000000001 /* AppDelegate.swift */; };
-		500000032C63E00100000001 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000032C63E00000000001 /* Alarm.swift */; };
-		500000042C63E00100000001 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000042C63E00000000001 /* Mission.swift */; };
-		500000052C63E00100000001 /* AlarmSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000052C63E00000000001 /* AlarmSound.swift */; };
-		500000062C63E00100000001 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000062C63E00000000001 /* NotificationService.swift */; };
-		500000072C63E00100000001 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000072C63E00000000001 /* AudioService.swift */; };
-		500000082C63E00100000001 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000082C63E00000000001 /* MotionService.swift */; };
-		500000092C63E00100000001 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000092C63E00000000001 /* HapticService.swift */; };
-		5000000A2C63E00100000001 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000A2C63E00000000001 /* AlarmScheduler.swift */; };
-		5000000B2C63E00100000001 /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000B2C63E00000000001 /* AlarmListView.swift */; };
-		5000000C2C63E00100000001 /* AlarmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000C2C63E00000000001 /* AlarmRowView.swift */; };
-		5000000D2C63E00100000001 /* NightstandClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000D2C63E00000000001 /* NightstandClockView.swift */; };
-		5000000E2C63E00100000001 /* AlarmEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000E2C63E00000000001 /* AlarmEditView.swift */; };
-		5000000F2C63E00100000001 /* MissionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000F2C63E00000000001 /* MissionPickerView.swift */; };
-		500000102C63E00100000001 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000102C63E00000000001 /* SoundPickerView.swift */; };
-		500000112C63E00100000001 /* AlarmRingingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000112C63E00000000001 /* AlarmRingingView.swift */; };
-		500000122C63E00100000001 /* MissionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000122C63E00000000001 /* MissionContainerView.swift */; };
-		500000132C63E00100000001 /* MathMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000132C63E00000000001 /* MathMissionView.swift */; };
-		500000142C63E00100000001 /* ShakeMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000142C63E00000000001 /* ShakeMissionView.swift */; };
-		500000152C63E00100000001 /* StepsSquatsMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000152C63E00000000001 /* StepsSquatsMissionView.swift */; };
-		500000162C63E00100000001 /* MemoryMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000162C63E00000000001 /* MemoryMissionView.swift */; };
-		500000172C63E00100000001 /* TypingMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000172C63E00000000001 /* TypingMissionView.swift */; };
-		500000182C63E00100000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000182C63E00000000001 /* SettingsView.swift */; };
-		500000192C63E00100000001 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000192C63E00000000001 /* GlassCard.swift */; };
-		5000001A2C63E00100000001 /* NeonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000001A2C63E00000000001 /* NeonButton.swift */; };
+		500000012C63E00100000001 /* App/WakeWakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000012C63E00000000001 /* App/WakeWakeApp.swift */; };
+		500000022C63E00100000001 /* App/AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000022C63E00000000001 /* App/AppDelegate.swift */; };
+		500000032C63E00100000001 /* Models/Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000032C63E00000000001 /* Models/Alarm.swift */; };
+		500000042C63E00100000001 /* Models/Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000042C63E00000000001 /* Models/Mission.swift */; };
+		500000052C63E00100000001 /* Models/AlarmSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000052C63E00000000001 /* Models/AlarmSound.swift */; };
+		500000062C63E00100000001 /* Services/NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000062C63E00000000001 /* Services/NotificationService.swift */; };
+		500000072C63E00100000001 /* Services/AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000072C63E00000000001 /* Services/AudioService.swift */; };
+		500000082C63E00100000001 /* Services/MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000082C63E00000000001 /* Services/MotionService.swift */; };
+		500000092C63E00100000001 /* Services/HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000092C63E00000000001 /* Services/HapticService.swift */; };
+		5000000A2C63E00100000001 /* Services/AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000A2C63E00000000001 /* Services/AlarmScheduler.swift */; };
+		5000000B2C63E00100000001 /* Views/AlarmList/AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000B2C63E00000000001 /* Views/AlarmList/AlarmListView.swift */; };
+		5000000C2C63E00100000001 /* Views/AlarmList/AlarmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000C2C63E00000000001 /* Views/AlarmList/AlarmRowView.swift */; };
+		5000000D2C63E00100000001 /* Views/AlarmList/NightstandClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000D2C63E00000000001 /* Views/AlarmList/NightstandClockView.swift */; };
+		5000000E2C63E00100000001 /* Views/AlarmEdit/AlarmEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000E2C63E00000000001 /* Views/AlarmEdit/AlarmEditView.swift */; };
+		5000000F2C63E00100000001 /* Views/AlarmEdit/MissionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000000F2C63E00000000001 /* Views/AlarmEdit/MissionPickerView.swift */; };
+		500000102C63E00100000001 /* Views/AlarmEdit/SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000102C63E00000000001 /* Views/AlarmEdit/SoundPickerView.swift */; };
+		500000112C63E00100000001 /* Views/Ringing/AlarmRingingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000112C63E00000000001 /* Views/Ringing/AlarmRingingView.swift */; };
+		500000122C63E00100000001 /* Views/Ringing/MissionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000122C63E00000000001 /* Views/Ringing/MissionContainerView.swift */; };
+		500000132C63E00100000001 /* Views/Missions/MathMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000132C63E00000000001 /* Views/Missions/MathMissionView.swift */; };
+		500000142C63E00100000001 /* Views/Missions/ShakeMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000142C63E00000000001 /* Views/Missions/ShakeMissionView.swift */; };
+		500000152C63E00100000001 /* Views/Missions/StepsSquatsMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000152C63E00000000001 /* Views/Missions/StepsSquatsMissionView.swift */; };
+		500000162C63E00100000001 /* Views/Missions/MemoryMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000162C63E00000000001 /* Views/Missions/MemoryMissionView.swift */; };
+		500000172C63E00100000001 /* Views/Missions/TypingMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000172C63E00000000001 /* Views/Missions/TypingMissionView.swift */; };
+		500000182C63E00100000001 /* Views/Settings/SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000182C63E00000000001 /* Views/Settings/SettingsView.swift */; };
+		500000192C63E00100000001 /* Views/Components/GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500000192C63E00000000001 /* Views/Components/GlassCard.swift */; };
+		5000001A2C63E00100000001 /* Views/Components/NeonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */; };
 		5000001B2C63E00100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5000001B2C63E00000000001 /* Assets.xcassets */; };
-		600000012C63E00100000001 /* AlarmModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000012C63E00000000001 /* AlarmModelTests.swift */; };
-		600000022C63E00100000001 /* MathMissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000022C63E00000000001 /* MathMissionTests.swift */; };
-		600000032C63E00100000001 /* RepeatDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000032C63E00000000001 /* RepeatDayTests.swift */; };
-		600000042C63E00100000001 /* AlarmSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000042C63E00000000001 /* AlarmSoundTests.swift */; };
-		600000052C63E00100000001 /* AlarmSchedulerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */; };
-		600000062C63E00100000001 /* NotificationServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */; };
-		600000072C63E00100000001 /* AudioServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000072C63E00000000001 /* AudioServiceIntegrationTests.swift */; };
-		600000082C63E00100000001 /* MotionServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000082C63E00000000001 /* MotionServiceIntegrationTests.swift */; };
+		600000012C63E00100000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000012C63E00000000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift */; };
+		600000022C63E00100000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000022C63E00000000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift */; };
+		600000032C63E00100000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000032C63E00000000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift */; };
+		600000042C63E00100000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000042C63E00000000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift */; };
+		600000052C63E00100000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000052C63E00000000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift */; };
+		600000062C63E00100000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000062C63E00000000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift */; };
+		600000072C63E00100000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000072C63E00000000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift */; };
+		600000082C63E00100000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600000082C63E00000000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,44 +56,44 @@
 
 /* Begin PBXFileReference section */
 		500000002C63E00000000001 /* WakeWake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeWake.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		500000012C63E00000000001 /* WakeWakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/WakeWakeApp.swift; sourceTree = "<group>"; };
-		500000022C63E00000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppDelegate.swift; sourceTree = "<group>"; };
-		500000032C63E00000000001 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Alarm.swift; sourceTree = "<group>"; };
-		500000042C63E00000000001 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Mission.swift; sourceTree = "<group>"; };
-		500000052C63E00000000001 /* AlarmSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/AlarmSound.swift; sourceTree = "<group>"; };
-		500000062C63E00000000001 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
-		500000072C63E00000000001 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioService.swift; sourceTree = "<group>"; };
-		500000082C63E00000000001 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/MotionService.swift; sourceTree = "<group>"; };
-		500000092C63E00000000001 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HapticService.swift; sourceTree = "<group>"; };
-		5000000A2C63E00000000001 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AlarmScheduler.swift; sourceTree = "<group>"; };
-		5000000B2C63E00000000001 /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmListView.swift; sourceTree = "<group>"; };
-		5000000C2C63E00000000001 /* AlarmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmRowView.swift; sourceTree = "<group>"; };
-		5000000D2C63E00000000001 /* NightstandClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/NightstandClockView.swift; sourceTree = "<group>"; };
-		5000000E2C63E00000000001 /* AlarmEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/AlarmEditView.swift; sourceTree = "<group>"; };
-		5000000F2C63E00000000001 /* MissionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/MissionPickerView.swift; sourceTree = "<group>"; };
-		500000102C63E00000000001 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/SoundPickerView.swift; sourceTree = "<group>"; };
-		500000112C63E00000000001 /* AlarmRingingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/AlarmRingingView.swift; sourceTree = "<group>"; };
-		500000122C63E00000000001 /* MissionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/MissionContainerView.swift; sourceTree = "<group>"; };
-		500000132C63E00000000001 /* MathMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MathMissionView.swift; sourceTree = "<group>"; };
-		500000142C63E00000000001 /* ShakeMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/ShakeMissionView.swift; sourceTree = "<group>"; };
-		500000152C63E00000000001 /* StepsSquatsMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/StepsSquatsMissionView.swift; sourceTree = "<group>"; };
-		500000162C63E00000000001 /* MemoryMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MemoryMissionView.swift; sourceTree = "<group>"; };
-		500000172C63E00000000001 /* TypingMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/TypingMissionView.swift; sourceTree = "<group>"; };
-		500000182C63E00000000001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
-		500000192C63E00000000001 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/GlassCard.swift; sourceTree = "<group>"; };
-		5000001A2C63E00000000001 /* NeonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/NeonButton.swift; sourceTree = "<group>"; };
+		500000012C63E00000000001 /* App/WakeWakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/WakeWakeApp.swift; sourceTree = "<group>"; };
+		500000022C63E00000000001 /* App/AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppDelegate.swift; sourceTree = "<group>"; };
+		500000032C63E00000000001 /* Models/Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Alarm.swift; sourceTree = "<group>"; };
+		500000042C63E00000000001 /* Models/Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Mission.swift; sourceTree = "<group>"; };
+		500000052C63E00000000001 /* Models/AlarmSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/AlarmSound.swift; sourceTree = "<group>"; };
+		500000062C63E00000000001 /* Services/NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
+		500000072C63E00000000001 /* Services/AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioService.swift; sourceTree = "<group>"; };
+		500000082C63E00000000001 /* Services/MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/MotionService.swift; sourceTree = "<group>"; };
+		500000092C63E00000000001 /* Services/HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HapticService.swift; sourceTree = "<group>"; };
+		5000000A2C63E00000000001 /* Services/AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AlarmScheduler.swift; sourceTree = "<group>"; };
+		5000000B2C63E00000000001 /* Views/AlarmList/AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmListView.swift; sourceTree = "<group>"; };
+		5000000C2C63E00000000001 /* Views/AlarmList/AlarmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmRowView.swift; sourceTree = "<group>"; };
+		5000000D2C63E00000000001 /* Views/AlarmList/NightstandClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/NightstandClockView.swift; sourceTree = "<group>"; };
+		5000000E2C63E00000000001 /* Views/AlarmEdit/AlarmEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/AlarmEditView.swift; sourceTree = "<group>"; };
+		5000000F2C63E00000000001 /* Views/AlarmEdit/MissionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/MissionPickerView.swift; sourceTree = "<group>"; };
+		500000102C63E00000000001 /* Views/AlarmEdit/SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/SoundPickerView.swift; sourceTree = "<group>"; };
+		500000112C63E00000000001 /* Views/Ringing/AlarmRingingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/AlarmRingingView.swift; sourceTree = "<group>"; };
+		500000122C63E00000000001 /* Views/Ringing/MissionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/MissionContainerView.swift; sourceTree = "<group>"; };
+		500000132C63E00000000001 /* Views/Missions/MathMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MathMissionView.swift; sourceTree = "<group>"; };
+		500000142C63E00000000001 /* Views/Missions/ShakeMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/ShakeMissionView.swift; sourceTree = "<group>"; };
+		500000152C63E00000000001 /* Views/Missions/StepsSquatsMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/StepsSquatsMissionView.swift; sourceTree = "<group>"; };
+		500000162C63E00000000001 /* Views/Missions/MemoryMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MemoryMissionView.swift; sourceTree = "<group>"; };
+		500000172C63E00000000001 /* Views/Missions/TypingMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/TypingMissionView.swift; sourceTree = "<group>"; };
+		500000182C63E00000000001 /* Views/Settings/SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		500000192C63E00000000001 /* Views/Components/GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/GlassCard.swift; sourceTree = "<group>"; };
+		5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/NeonButton.swift; sourceTree = "<group>"; };
 		5000001B2C63E00000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5000001C2C63E00000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App/Info.plist; sourceTree = "<group>"; };
-		5000001D2C63E00000000001 /* WakeWake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements/WakeWake.entitlements; sourceTree = "<group>"; };
+		5000001C2C63E00000000001 /* App/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App/Info.plist; sourceTree = "<group>"; };
+		5000001D2C63E00000000001 /* Entitlements/WakeWake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements/WakeWake.entitlements; sourceTree = "<group>"; };
 		600000002C63E00000000001 /* WakeWakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeWakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		600000012C63E00000000001 /* AlarmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmModelTests.swift; sourceTree = "<group>"; };
-		600000022C63E00000000001 /* MathMissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/MathMissionTests.swift; sourceTree = "<group>"; };
-		600000032C63E00000000001 /* RepeatDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/RepeatDayTests.swift; sourceTree = "<group>"; };
-		600000042C63E00000000001 /* AlarmSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmSoundTests.swift; sourceTree = "<group>"; };
-		600000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift; sourceTree = "<group>"; };
-		600000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		600000072C63E00000000001 /* AudioServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift; sourceTree = "<group>"; };
-		600000082C63E00000000001 /* MotionServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000012C63E00000000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmModelTests.swift; sourceTree = "<group>"; };
+		600000022C63E00000000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/MathMissionTests.swift; sourceTree = "<group>"; };
+		600000032C63E00000000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/RepeatDayTests.swift; sourceTree = "<group>"; };
+		600000042C63E00000000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmSoundTests.swift; sourceTree = "<group>"; };
+		600000052C63E00000000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift; sourceTree = "<group>"; };
+		600000062C63E00000000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000072C63E00000000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		600000082C63E00000000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,35 +127,35 @@
 		100000102C63E00000000001 /* WakeWake */ = {
 			isa = PBXGroup;
 			children = (
-				500000012C63E00000000001 /* WakeWakeApp.swift */,
-				500000022C63E00000000001 /* AppDelegate.swift */,
-				500000032C63E00000000001 /* Alarm.swift */,
-				500000042C63E00000000001 /* Mission.swift */,
-				500000052C63E00000000001 /* AlarmSound.swift */,
-				500000062C63E00000000001 /* NotificationService.swift */,
-				500000072C63E00000000001 /* AudioService.swift */,
-				500000082C63E00000000001 /* MotionService.swift */,
-				500000092C63E00000000001 /* HapticService.swift */,
-				5000000A2C63E00000000001 /* AlarmScheduler.swift */,
-				5000000B2C63E00000000001 /* AlarmListView.swift */,
-				5000000C2C63E00000000001 /* AlarmRowView.swift */,
-				5000000D2C63E00000000001 /* NightstandClockView.swift */,
-				5000000E2C63E00000000001 /* AlarmEditView.swift */,
-				5000000F2C63E00000000001 /* MissionPickerView.swift */,
-				500000102C63E00000000001 /* SoundPickerView.swift */,
-				500000112C63E00000000001 /* AlarmRingingView.swift */,
-				500000122C63E00000000001 /* MissionContainerView.swift */,
-				500000132C63E00000000001 /* MathMissionView.swift */,
-				500000142C63E00000000001 /* ShakeMissionView.swift */,
-				500000152C63E00000000001 /* StepsSquatsMissionView.swift */,
-				500000162C63E00000000001 /* MemoryMissionView.swift */,
-				500000172C63E00000000001 /* TypingMissionView.swift */,
-				500000182C63E00000000001 /* SettingsView.swift */,
-				500000192C63E00000000001 /* GlassCard.swift */,
-				5000001A2C63E00000000001 /* NeonButton.swift */,
+				500000012C63E00000000001 /* App/WakeWakeApp.swift */,
+				500000022C63E00000000001 /* App/AppDelegate.swift */,
+				500000032C63E00000000001 /* Models/Alarm.swift */,
+				500000042C63E00000000001 /* Models/Mission.swift */,
+				500000052C63E00000000001 /* Models/AlarmSound.swift */,
+				500000062C63E00000000001 /* Services/NotificationService.swift */,
+				500000072C63E00000000001 /* Services/AudioService.swift */,
+				500000082C63E00000000001 /* Services/MotionService.swift */,
+				500000092C63E00000000001 /* Services/HapticService.swift */,
+				5000000A2C63E00000000001 /* Services/AlarmScheduler.swift */,
+				5000000B2C63E00000000001 /* Views/AlarmList/AlarmListView.swift */,
+				5000000C2C63E00000000001 /* Views/AlarmList/AlarmRowView.swift */,
+				5000000D2C63E00000000001 /* Views/AlarmList/NightstandClockView.swift */,
+				5000000E2C63E00000000001 /* Views/AlarmEdit/AlarmEditView.swift */,
+				5000000F2C63E00000000001 /* Views/AlarmEdit/MissionPickerView.swift */,
+				500000102C63E00000000001 /* Views/AlarmEdit/SoundPickerView.swift */,
+				500000112C63E00000000001 /* Views/Ringing/AlarmRingingView.swift */,
+				500000122C63E00000000001 /* Views/Ringing/MissionContainerView.swift */,
+				500000132C63E00000000001 /* Views/Missions/MathMissionView.swift */,
+				500000142C63E00000000001 /* Views/Missions/ShakeMissionView.swift */,
+				500000152C63E00000000001 /* Views/Missions/StepsSquatsMissionView.swift */,
+				500000162C63E00000000001 /* Views/Missions/MemoryMissionView.swift */,
+				500000172C63E00000000001 /* Views/Missions/TypingMissionView.swift */,
+				500000182C63E00000000001 /* Views/Settings/SettingsView.swift */,
+				500000192C63E00000000001 /* Views/Components/GlassCard.swift */,
+				5000001A2C63E00000000001 /* Views/Components/NeonButton.swift */,
 				5000001B2C63E00000000001 /* Assets.xcassets */,
-				5000001C2C63E00000000001 /* Info.plist */,
-				5000001D2C63E00000000001 /* WakeWake.entitlements */,
+				5000001C2C63E00000000001 /* App/Info.plist */,
+				5000001D2C63E00000000001 /* Entitlements/WakeWake.entitlements */,
 			);
 			path = WakeWake;
 			sourceTree = "<group>";
@@ -163,14 +163,14 @@
 		200000102C63E00000000001 /* WakeWakeTests */ = {
 			isa = PBXGroup;
 			children = (
-				600000012C63E00000000001 /* AlarmModelTests.swift */,
-				600000022C63E00000000001 /* MathMissionTests.swift */,
-				600000032C63E00000000001 /* RepeatDayTests.swift */,
-				600000042C63E00000000001 /* AlarmSoundTests.swift */,
-				600000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */,
-				600000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */,
-				600000072C63E00000000001 /* AudioServiceIntegrationTests.swift */,
-				600000082C63E00000000001 /* MotionServiceIntegrationTests.swift */,
+				600000012C63E00000000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift */,
+				600000022C63E00000000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift */,
+				600000032C63E00000000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift */,
+				600000042C63E00000000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift */,
+				600000052C63E00000000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift */,
+				600000062C63E00000000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift */,
+				600000072C63E00000000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift */,
+				600000082C63E00000000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift */,
 			);
 			path = WakeWakeTests;
 			sourceTree = "<group>";
@@ -266,32 +266,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				500000012C63E00100000001 /* WakeWakeApp.swift in Sources */,
-				500000022C63E00100000001 /* AppDelegate.swift in Sources */,
-				500000032C63E00100000001 /* Alarm.swift in Sources */,
-				500000042C63E00100000001 /* Mission.swift in Sources */,
-				500000052C63E00100000001 /* AlarmSound.swift in Sources */,
-				500000062C63E00100000001 /* NotificationService.swift in Sources */,
-				500000072C63E00100000001 /* AudioService.swift in Sources */,
-				500000082C63E00100000001 /* MotionService.swift in Sources */,
-				500000092C63E00100000001 /* HapticService.swift in Sources */,
-				5000000A2C63E00100000001 /* AlarmScheduler.swift in Sources */,
-				5000000B2C63E00100000001 /* AlarmListView.swift in Sources */,
-				5000000C2C63E00100000001 /* AlarmRowView.swift in Sources */,
-				5000000D2C63E00100000001 /* NightstandClockView.swift in Sources */,
-				5000000E2C63E00100000001 /* AlarmEditView.swift in Sources */,
-				5000000F2C63E00100000001 /* MissionPickerView.swift in Sources */,
-				500000102C63E00100000001 /* SoundPickerView.swift in Sources */,
-				500000112C63E00100000001 /* AlarmRingingView.swift in Sources */,
-				500000122C63E00100000001 /* MissionContainerView.swift in Sources */,
-				500000132C63E00100000001 /* MathMissionView.swift in Sources */,
-				500000142C63E00100000001 /* ShakeMissionView.swift in Sources */,
-				500000152C63E00100000001 /* StepsSquatsMissionView.swift in Sources */,
-				500000162C63E00100000001 /* MemoryMissionView.swift in Sources */,
-				500000172C63E00100000001 /* TypingMissionView.swift in Sources */,
-				500000182C63E00100000001 /* SettingsView.swift in Sources */,
-				500000192C63E00100000001 /* GlassCard.swift in Sources */,
-				5000001A2C63E00100000001 /* NeonButton.swift in Sources */,
+				500000012C63E00100000001 /* App/WakeWakeApp.swift in Sources */,
+				500000022C63E00100000001 /* App/AppDelegate.swift in Sources */,
+				500000032C63E00100000001 /* Models/Alarm.swift in Sources */,
+				500000042C63E00100000001 /* Models/Mission.swift in Sources */,
+				500000052C63E00100000001 /* Models/AlarmSound.swift in Sources */,
+				500000062C63E00100000001 /* Services/NotificationService.swift in Sources */,
+				500000072C63E00100000001 /* Services/AudioService.swift in Sources */,
+				500000082C63E00100000001 /* Services/MotionService.swift in Sources */,
+				500000092C63E00100000001 /* Services/HapticService.swift in Sources */,
+				5000000A2C63E00100000001 /* Services/AlarmScheduler.swift in Sources */,
+				5000000B2C63E00100000001 /* Views/AlarmList/AlarmListView.swift in Sources */,
+				5000000C2C63E00100000001 /* Views/AlarmList/AlarmRowView.swift in Sources */,
+				5000000D2C63E00100000001 /* Views/AlarmList/NightstandClockView.swift in Sources */,
+				5000000E2C63E00100000001 /* Views/AlarmEdit/AlarmEditView.swift in Sources */,
+				5000000F2C63E00100000001 /* Views/AlarmEdit/MissionPickerView.swift in Sources */,
+				500000102C63E00100000001 /* Views/AlarmEdit/SoundPickerView.swift in Sources */,
+				500000112C63E00100000001 /* Views/Ringing/AlarmRingingView.swift in Sources */,
+				500000122C63E00100000001 /* Views/Ringing/MissionContainerView.swift in Sources */,
+				500000132C63E00100000001 /* Views/Missions/MathMissionView.swift in Sources */,
+				500000142C63E00100000001 /* Views/Missions/ShakeMissionView.swift in Sources */,
+				500000152C63E00100000001 /* Views/Missions/StepsSquatsMissionView.swift in Sources */,
+				500000162C63E00100000001 /* Views/Missions/MemoryMissionView.swift in Sources */,
+				500000172C63E00100000001 /* Views/Missions/TypingMissionView.swift in Sources */,
+				500000182C63E00100000001 /* Views/Settings/SettingsView.swift in Sources */,
+				500000192C63E00100000001 /* Views/Components/GlassCard.swift in Sources */,
+				5000001A2C63E00100000001 /* Views/Components/NeonButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,14 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				600000012C63E00100000001 /* AlarmModelTests.swift in Sources */,
-				600000022C63E00100000001 /* MathMissionTests.swift in Sources */,
-				600000032C63E00100000001 /* RepeatDayTests.swift in Sources */,
-				600000042C63E00100000001 /* AlarmSoundTests.swift in Sources */,
-				600000052C63E00100000001 /* AlarmSchedulerIntegrationTests.swift in Sources */,
-				600000062C63E00100000001 /* NotificationServiceIntegrationTests.swift in Sources */,
-				600000072C63E00100000001 /* AudioServiceIntegrationTests.swift in Sources */,
-				600000082C63E00100000001 /* MotionServiceIntegrationTests.swift in Sources */,
+				600000012C63E00100000001 /* WakeWakeTests/UnitTests/AlarmModelTests.swift in Sources */,
+				600000022C63E00100000001 /* WakeWakeTests/UnitTests/MathMissionTests.swift in Sources */,
+				600000032C63E00100000001 /* WakeWakeTests/UnitTests/RepeatDayTests.swift in Sources */,
+				600000042C63E00100000001 /* WakeWakeTests/UnitTests/AlarmSoundTests.swift in Sources */,
+				600000052C63E00100000001 /* WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift in Sources */,
+				600000062C63E00100000001 /* WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift in Sources */,
+				600000072C63E00100000001 /* WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift in Sources */,
+				600000082C63E00100000001 /* WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,10 +329,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_STYLE = Automatic;
 				CODE_SIGN_ENTITLEMENTS = WakeWake/Entitlements/WakeWake.entitlements;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YVZG5QKT42;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = WakeWake/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -357,10 +357,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_STYLE = Automatic;
 				CODE_SIGN_ENTITLEMENTS = WakeWake/Entitlements/WakeWake.entitlements;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YVZG5QKT42;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = WakeWake/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -374,30 +374,6 @@
 				SWIFT_EMIT_LOC_TARGETS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		200000172C63E00000000001 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
-			};
-			name = Debug;
-		};
-		200000182C63E00000000001 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
 			};
 			name = Release;
 		};
@@ -461,6 +437,30 @@
 			};
 			name = Release;
 		};
+		200000172C63E00000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
+			};
+			name = Debug;
+		};
+		200000182C63E00000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,20 +473,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		200000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWakeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				200000172C63E00000000001 /* Debug */,
-				200000182C63E00000000001 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		100000162C63E00000000001 /* Build configuration list for PBXProject "WakeWake" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100000192C63E00000000001 /* Debug */,
 				1000001A2C63E00000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		200000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				200000172C63E00000000001 /* Debug */,
+				200000182C63E00000000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
