@@ -41,6 +41,7 @@ public final class AlarmScheduler: ObservableObject {
         try? modelContext.save()
 
         Task {
+            _ = await NotificationService.shared.requestPermissions()
             if alarm.isEnabled {
                 await NotificationService.shared.scheduleNotification(for: alarm)
             } else {

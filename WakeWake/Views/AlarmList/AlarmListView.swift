@@ -21,7 +21,7 @@ public struct AlarmListView: View {
     @State private var activeRingingAlarm: Alarm? = nil
 
     @State private var countdownString: String = "No upcoming alarms"
-    private let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     public var body: some View {
         NavigationStack {
@@ -160,6 +160,7 @@ public struct AlarmListView: View {
             }
             .onReceive(timer) { _ in
                 updateCountdown()
+                checkScheduledAlarmsToRing()
             }
             .onReceive(notificationService.$currentRingingAlarmID) { alarmID in
                 if let alarmID = alarmID {
@@ -172,6 +173,23 @@ public struct AlarmListView: View {
                 if let alarmID = note.object as? UUID, let alarm = alarms.first(where: { $0.id == alarmID }) {
                     self.activeRingingAlarm = alarm
                 }
+            }
+        }
+    }
+
+    private func checkScheduledAlarmsToRing() {
+        guard activeRingingAlarm == nil else { return }
+        let now = Date()
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.hour, .minute, .second], from: now)
+        
+        for alarm in alarms where alarm.isEnabled {
+            let alarmComponents = calendar.dateComponents([.hour, .minute], from: alarm.time)
+            if alarmComponents.hour == currentComponents.hour &&
+               alarmComponents.minute == currentComponents.minute &&
+               currentComponents.second == 0 {
+                self.activeRingingAlarm = alarm
+                break
             }
         }
     }

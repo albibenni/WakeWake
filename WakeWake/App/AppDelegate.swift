@@ -16,9 +16,10 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
 
-        // Initialize Audio Session for background alarm sound override
+        // Initialize Audio Session & Request Notification Permissions for scheduled alarms
         Task { @MainActor in
             AudioService.shared.configureAudioSession()
+            _ = await NotificationService.shared.requestPermissions()
         }
 
         return true
