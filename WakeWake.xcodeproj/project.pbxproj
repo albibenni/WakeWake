@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000012C63E00100000001 /* WakeWakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000012C63E00000000001 /* WakeWakeApp.swift */; };
+		100000022C63E00100000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000022C63E00000000001 /* AppDelegate.swift */; };
+		100000032C63E00100000001 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000032C63E00000000001 /* Alarm.swift */; };
+		100000042C63E00100000001 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000042C63E00000000001 /* Mission.swift */; };
+		100000052C63E00100000001 /* AlarmSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000052C63E00000000001 /* AlarmSound.swift */; };
+		100000062C63E00100000001 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000062C63E00000000001 /* NotificationService.swift */; };
+		100000072C63E00100000001 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000072C63E00000000001 /* AudioService.swift */; };
+		100000082C63E00100000001 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000082C63E00000000001 /* MotionService.swift */; };
+		100000092C63E00100000001 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000092C63E00000000001 /* HapticService.swift */; };
+		1000000A2C63E00100000001 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000A2C63E00000000001 /* AlarmScheduler.swift */; };
+		1000000B2C63E00100000001 /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000B2C63E00000000001 /* AlarmListView.swift */; };
+		1000000C2C63E00100000001 /* AlarmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000C2C63E00000000001 /* AlarmRowView.swift */; };
+		1000000D2C63E00100000001 /* NightstandClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000D2C63E00000000001 /* NightstandClockView.swift */; };
+		1000000E2C63E00100000001 /* AlarmEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000E2C63E00000000001 /* AlarmEditView.swift */; };
+		1000000F2C63E00100000001 /* MissionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000F2C63E00000000001 /* MissionPickerView.swift */; };
+		100000102C63E00100000001 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000102C63E00000000001 /* SoundPickerView.swift */; };
+		100000112C63E00100000001 /* AlarmRingingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000112C63E00000000001 /* AlarmRingingView.swift */; };
+		100000122C63E00100000001 /* MissionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000122C63E00000000001 /* MissionContainerView.swift */; };
+		100000132C63E00100000001 /* MathMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000132C63E00000000001 /* MathMissionView.swift */; };
+		100000142C63E00100000001 /* ShakeMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000142C63E00000000001 /* ShakeMissionView.swift */; };
+		100000152C63E00100000001 /* StepsSquatsMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000152C63E00000000001 /* StepsSquatsMissionView.swift */; };
+		100000162C63E00100000001 /* MemoryMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000162C63E00000000001 /* MemoryMissionView.swift */; };
+		100000172C63E00100000001 /* TypingMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000172C63E00000000001 /* TypingMissionView.swift */; };
+		100000182C63E00100000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000182C63E00000000001 /* SettingsView.swift */; };
+		100000192C63E00100000001 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000192C63E00000000001 /* GlassCard.swift */; };
+		1000001A2C63E00100000001 /* NeonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000001A2C63E00000000001 /* NeonButton.swift */; };
+		1000001B2C63E00100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1000001B2C63E00000000001 /* Assets.xcassets */; };
+		200000012C63E00100000001 /* AlarmModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000012C63E00000000001 /* AlarmModelTests.swift */; };
+		200000022C63E00100000001 /* MathMissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000022C63E00000000001 /* MathMissionTests.swift */; };
+		200000032C63E00100000001 /* RepeatDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000032C63E00000000001 /* RepeatDayTests.swift */; };
+		200000042C63E00100000001 /* AlarmSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000042C63E00000000001 /* AlarmSoundTests.swift */; };
+		200000052C63E00100000001 /* AlarmSchedulerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */; };
+		200000062C63E00100000001 /* NotificationServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */; };
+		200000072C63E00100000001 /* AudioServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000072C63E00000000001 /* AudioServiceIntegrationTests.swift */; };
+		200000082C63E00100000001 /* MotionServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000082C63E00000000001 /* MotionServiceIntegrationTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		200000002C63E00000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 100000152C63E00000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 100000112C63E00000000001;
+			remoteInfo = WakeWake;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		100000002C63E00000000001 /* WakeWake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakeWake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000012C63E00000000001 /* WakeWakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/WakeWakeApp.swift; sourceTree = "<group>"; };
+		100000022C63E00000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppDelegate.swift; sourceTree = "<group>"; };
+		100000032C63E00000000001 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Alarm.swift; sourceTree = "<group>"; };
+		100000042C63E00000000001 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Mission.swift; sourceTree = "<group>"; };
+		100000052C63E00000000001 /* AlarmSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/AlarmSound.swift; sourceTree = "<group>"; };
+		100000062C63E00000000001 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
+		100000072C63E00000000001 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AudioService.swift; sourceTree = "<group>"; };
+		100000082C63E00000000001 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/MotionService.swift; sourceTree = "<group>"; };
+		100000092C63E00000000001 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HapticService.swift; sourceTree = "<group>"; };
+		1000000A2C63E00000000001 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AlarmScheduler.swift; sourceTree = "<group>"; };
+		1000000B2C63E00000000001 /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmListView.swift; sourceTree = "<group>"; };
+		1000000C2C63E00000000001 /* AlarmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/AlarmRowView.swift; sourceTree = "<group>"; };
+		1000000D2C63E00000000001 /* NightstandClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmList/NightstandClockView.swift; sourceTree = "<group>"; };
+		1000000E2C63E00000000001 /* AlarmEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/AlarmEditView.swift; sourceTree = "<group>"; };
+		1000000F2C63E00000000001 /* MissionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/MissionPickerView.swift; sourceTree = "<group>"; };
+		100000102C63E00000000001 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AlarmEdit/SoundPickerView.swift; sourceTree = "<group>"; };
+		100000112C63E00000000001 /* AlarmRingingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/AlarmRingingView.swift; sourceTree = "<group>"; };
+		100000122C63E00000000001 /* MissionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Ringing/MissionContainerView.swift; sourceTree = "<group>"; };
+		100000132C63E00000000001 /* MathMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MathMissionView.swift; sourceTree = "<group>"; };
+		100000142C63E00000000001 /* ShakeMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/ShakeMissionView.swift; sourceTree = "<group>"; };
+		100000152C63E00000000001 /* StepsSquatsMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/StepsSquatsMissionView.swift; sourceTree = "<group>"; };
+		100000162C63E00000000001 /* MemoryMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/MemoryMissionView.swift; sourceTree = "<group>"; };
+		100000172C63E00000000001 /* TypingMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Missions/TypingMissionView.swift; sourceTree = "<group>"; };
+		100000182C63E00000000001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		100000192C63E00000000001 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/GlassCard.swift; sourceTree = "<group>"; };
+		1000001A2C63E00000000001 /* NeonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/NeonButton.swift; sourceTree = "<group>"; };
+		1000001B2C63E00000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1000001C2C63E00000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App/Info.plist; sourceTree = "<group>"; };
+		1000001D2C63E00000000001 /* WakeWake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements/WakeWake.entitlements; sourceTree = "<group>"; };
+		200000002C63E00000000001 /* WakeWakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeWakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000012C63E00000000001 /* AlarmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmModelTests.swift; sourceTree = "<group>"; };
+		200000022C63E00000000001 /* MathMissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/MathMissionTests.swift; sourceTree = "<group>"; };
+		200000032C63E00000000001 /* RepeatDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/RepeatDayTests.swift; sourceTree = "<group>"; };
+		200000042C63E00000000001 /* AlarmSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/UnitTests/AlarmSoundTests.swift; sourceTree = "<group>"; };
+		200000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AlarmSchedulerIntegrationTests.swift; sourceTree = "<group>"; };
+		200000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/NotificationServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		200000072C63E00000000001 /* AudioServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/AudioServiceIntegrationTests.swift; sourceTree = "<group>"; };
+		200000082C63E00000000001 /* MotionServiceIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeWakeTests/IntegrationTests/MotionServiceIntegrationTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1000000E2C63E00000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2000000E2C63E00000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1000000F2C63E00000000001 = {
+			isa = PBXGroup;
+			children = (
+				100000102C63E00000000001 /* WakeWake */,
+				200000102C63E00000000001 /* WakeWakeTests */,
+				100000002C63E00000000001 /* WakeWake.app */,
+				200000002C63E00000000001 /* WakeWakeTests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		100000102C63E00000000001 /* WakeWake */ = {
+			isa = PBXGroup;
+			children = (
+				100000012C63E00000000001 /* WakeWakeApp.swift */,
+				100000022C63E00000000001 /* AppDelegate.swift */,
+				100000032C63E00000000001 /* Alarm.swift */,
+				100000042C63E00000000001 /* Mission.swift */,
+				100000052C63E00000000001 /* AlarmSound.swift */,
+				100000062C63E00000000001 /* NotificationService.swift */,
+				100000072C63E00000000001 /* AudioService.swift */,
+				100000082C63E00000000001 /* MotionService.swift */,
+				100000092C63E00000000001 /* HapticService.swift */,
+				1000000A2C63E00000000001 /* AlarmScheduler.swift */,
+				1000000B2C63E00000000001 /* AlarmListView.swift */,
+				1000000C2C63E00000000001 /* AlarmRowView.swift */,
+				1000000D2C63E00000000001 /* NightstandClockView.swift */,
+				1000000E2C63E00000000001 /* AlarmEditView.swift */,
+				1000000F2C63E00000000001 /* MissionPickerView.swift */,
+				100000102C63E00000000001 /* SoundPickerView.swift */,
+				100000112C63E00000000001 /* AlarmRingingView.swift */,
+				100000122C63E00000000001 /* MissionContainerView.swift */,
+				100000132C63E00000000001 /* MathMissionView.swift */,
+				100000142C63E00000000001 /* ShakeMissionView.swift */,
+				100000152C63E00000000001 /* StepsSquatsMissionView.swift */,
+				100000162C63E00000000001 /* MemoryMissionView.swift */,
+				100000172C63E00000000001 /* TypingMissionView.swift */,
+				100000182C63E00000000001 /* SettingsView.swift */,
+				100000192C63E00000000001 /* GlassCard.swift */,
+				1000001A2C63E00000000001 /* NeonButton.swift */,
+				1000001B2C63E00000000001 /* Assets.xcassets */,
+				1000001C2C63E00000000001 /* Info.plist */,
+				1000001D2C63E00000000001 /* WakeWake.entitlements */,
+			);
+			path = WakeWake;
+			sourceTree = "<group>";
+		};
+		200000102C63E00000000001 /* WakeWakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				200000012C63E00000000001 /* AlarmModelTests.swift */,
+				200000022C63E00000000001 /* MathMissionTests.swift */,
+				200000032C63E00000000001 /* RepeatDayTests.swift */,
+				200000042C63E00000000001 /* AlarmSoundTests.swift */,
+				200000052C63E00000000001 /* AlarmSchedulerIntegrationTests.swift */,
+				200000062C63E00000000001 /* NotificationServiceIntegrationTests.swift */,
+				200000072C63E00000000001 /* AudioServiceIntegrationTests.swift */,
+				200000082C63E00000000001 /* MotionServiceIntegrationTests.swift */,
+			);
+			path = WakeWakeTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		100000112C63E00000000001 /* WakeWake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 100000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWake" */;
+			buildPhases = (
+				100000122C63E00000000001 /* Sources */,
+				1000000E2C63E00000000001 /* Frameworks */,
+				100000132C63E00000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WakeWake;
+			productName = WakeWake;
+			productReference = 100000002C63E00000000001 /* WakeWake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		200000112C63E00000000001 /* WakeWakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 200000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWakeTests" */;
+			buildPhases = (
+				200000122C63E00000000001 /* Sources */,
+				2000000E2C63E00000000001 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				200000012C63E00000000002 /* PBXTargetDependency */,
+			);
+			name = WakeWakeTests;
+			productName = WakeWakeTests;
+			productReference = 200000002C63E00000000001 /* WakeWakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		100000152C63E00000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					100000112C63E00000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					200000112C63E00000000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 100000112C63E00000000001;
+					};
+				};
+			};
+			buildConfigurationList = 100000162C63E00000000001 /* Build configuration list for PBXProject "WakeWake" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1000000F2C63E00000000001;
+			productRefGroup = 1000000F2C63E00000000001;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				100000112C63E00000000001 /* WakeWake */,
+				200000112C63E00000000001 /* WakeWakeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		100000132C63E00000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1000001B2C63E00100000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		100000122C63E00000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000012C63E00100000001 /* WakeWakeApp.swift in Sources */,
+				100000022C63E00100000001 /* AppDelegate.swift in Sources */,
+				100000032C63E00100000001 /* Alarm.swift in Sources */,
+				100000042C63E00100000001 /* Mission.swift in Sources */,
+				100000052C63E00100000001 /* AlarmSound.swift in Sources */,
+				100000062C63E00100000001 /* NotificationService.swift in Sources */,
+				100000072C63E00100000001 /* AudioService.swift in Sources */,
+				100000082C63E00100000001 /* MotionService.swift in Sources */,
+				100000092C63E00100000001 /* HapticService.swift in Sources */,
+				1000000A2C63E00100000001 /* AlarmScheduler.swift in Sources */,
+				1000000B2C63E00100000001 /* AlarmListView.swift in Sources */,
+				1000000C2C63E00100000001 /* AlarmRowView.swift in Sources */,
+				1000000D2C63E00100000001 /* NightstandClockView.swift in Sources */,
+				1000000E2C63E00100000001 /* AlarmEditView.swift in Sources */,
+				1000000F2C63E00100000001 /* MissionPickerView.swift in Sources */,
+				100000102C63E00100000001 /* SoundPickerView.swift in Sources */,
+				100000112C63E00100000001 /* AlarmRingingView.swift in Sources */,
+				100000122C63E00100000001 /* MissionContainerView.swift in Sources */,
+				100000132C63E00100000001 /* MathMissionView.swift in Sources */,
+				100000142C63E00100000001 /* ShakeMissionView.swift in Sources */,
+				100000152C63E00100000001 /* StepsSquatsMissionView.swift in Sources */,
+				100000162C63E00100000001 /* MemoryMissionView.swift in Sources */,
+				100000172C63E00100000001 /* TypingMissionView.swift in Sources */,
+				100000182C63E00100000001 /* SettingsView.swift in Sources */,
+				100000192C63E00100000001 /* GlassCard.swift in Sources */,
+				1000001A2C63E00100000001 /* NeonButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		200000122C63E00000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				200000012C63E00100000001 /* AlarmModelTests.swift in Sources */,
+				200000022C63E00100000001 /* MathMissionTests.swift in Sources */,
+				200000032C63E00100000001 /* RepeatDayTests.swift in Sources */,
+				200000042C63E00100000001 /* AlarmSoundTests.swift in Sources */,
+				200000052C63E00100000001 /* AlarmSchedulerIntegrationTests.swift in Sources */,
+				200000062C63E00100000001 /* NotificationServiceIntegrationTests.swift in Sources */,
+				200000072C63E00100000001 /* AudioServiceIntegrationTests.swift in Sources */,
+				200000082C63E00100000001 /* MotionServiceIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		200000012C63E00000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 100000112C63E00000000001 /* WakeWake */;
+			targetProxy = 200000002C63E00000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		100000172C63E00000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = WakeWake/Entitlements/WakeWake.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WakeWake/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_TARGETS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		100000182C63E00000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = WakeWake/Entitlements/WakeWake.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WakeWake/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_TARGETS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		200000172C63E00000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
+			};
+			name = Debug;
+		};
+		200000182C63E00000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakewake.actionalarmtests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WakeWake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WakeWake";
+			};
+			name = Release;
+		};
+		100000192C63E00000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1000001A2C63E00000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		100000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000172C63E00000000001 /* Debug */,
+				100000182C63E00000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		200000142C63E00000000001 /* Build configuration list for PBXNativeTarget "WakeWakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				200000172C63E00000000001 /* Debug */,
+				200000182C63E00000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		100000162C63E00000000001 /* Build configuration list for PBXProject "WakeWake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				100000192C63E00000000001 /* Debug */,
+				1000001A2C63E00000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 100000152C63E00000000001 /* Project object */;
+}
