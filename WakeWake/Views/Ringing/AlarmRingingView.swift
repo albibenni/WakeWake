@@ -40,13 +40,26 @@ public struct AlarmRingingView: View {
             .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isPulseAnimating)
 
             if isMissionActive {
-                MissionContainerView(alarm: alarm) {
-                    // Mission successfully completed!
-                    AudioService.shared.stopAlarmSound()
-                    HapticService.shared.stopVibration()
-                    HapticService.shared.successNotification()
-                    onDismiss()
-                }
+                MissionContainerView(
+                    alarm: alarm,
+                    onCompleted: {
+                        // Mission successfully completed! Stop alarm completely
+                        AudioService.shared.stopAlarmSound()
+                        HapticService.shared.stopVibration()
+                        HapticService.shared.successNotification()
+                        onDismiss()
+                    },
+                    onFailed: {
+                        // Challenge failed or timed out! Resume loud alarm siren
+                        withAnimation {
+                            isMissionActive = false
+                        }
+                        AudioService.shared.startAlarmSound(sound: alarm.sound, volume: alarm.volume)
+                        if alarm.isVibrationEnabled {
+                            HapticService.shared.startContinuousVibration()
+                        }
+                    }
+                )
             } else {
                 VStack(spacing: 32) {
                     Spacer()
@@ -93,6 +106,10 @@ public struct AlarmRingingView: View {
                             color: .cyan,
                             textColor: .black
                         ) {
+                            // Pause alarm while doing challenge
+                            AudioService.shared.stopAlarmSound()
+                            HapticService.shared.stopVibration()
+                            
                             withAnimation {
                                 isMissionActive = true
                             }
