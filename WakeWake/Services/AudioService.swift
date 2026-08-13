@@ -18,7 +18,7 @@ public final class AudioService: NSObject, ObservableObject {
         super.init()
     }
 
-    /// Configure Audio Session to override Mute Switch, Do Not Disturb, and Low Battery Mode
+    /// Configure foreground audio playback. This does not override Focus or notification settings.
     public func configureAudioSession() {
         do {
             let session = AVAudioSession.sharedInstance()
@@ -279,11 +279,6 @@ public final class AudioService: NSObject, ObservableObject {
             player.stop()
         }
         audioPlayer = nil
-
-        // Stop all active system audio toolbox alerts
-        for soundID: UInt32 in [1000, 1005, 1007, 1008, 1016, 1021, 1022, 1023, 1025, 1026, 1027, 1033] {
-            AudioServicesDisposeSystemSoundID(SystemSoundID(soundID))
-        }
 
         if isPlayingToneEngine {
             audioEngine?.stop()

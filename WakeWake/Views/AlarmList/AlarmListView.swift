@@ -155,12 +155,13 @@ public struct AlarmListView: View {
                 updateCountdown()
                 Task {
                     await notificationService.checkSettings()
+                    AlarmScheduler.shared.rescheduleAllActiveAlarms(modelContext: modelContext)
                 }
                 checkRingingTrigger()
+                processPendingSnooze()
             }
             .onReceive(timer) { _ in
                 updateCountdown()
-                checkScheduledAlarmsToRing()
             }
             .onChange(of: alarms) { _, newAlarms in
                 if activeRingingAlarm == nil, let currentID = notificationService.currentRingingAlarmID {
@@ -180,6 +181,9 @@ public struct AlarmListView: View {
                 if let alarmID = note.object as? UUID, let alarm = alarms.first(where: { $0.id == alarmID }) {
                     triggerRinging(for: alarm)
                 }
+            }
+            .onReceive(notificationService.$pendingSnoozeAlarmID) { _ in
+                processPendingSnooze()
             }
         }
     }
@@ -213,25 +217,6 @@ public struct AlarmListView: View {
                 if alarm.isVibrationEnabled {
                     HapticService.shared.startContinuousVibration()
                 }
-            }
-        }
-    }
-
-    private func checkScheduledAlarmsToRing() {
-        guard activeRingingAlarm == nil else { return }
-        let now = Date()
-        let calendar = Calendar.current
-        let currentComponents = calendar.dateComponents([.hour, .minute], from: now)
-        let currentSecond = calendar.component(.second, from: now)
-
-        guard currentSecond <= 10 else { return }
-
-        for alarm in alarms where alarm.isEnabled {
-            let alarmComponents = calendar.dateComponents([.hour, .minute], from: alarm.time)
-            if alarmComponents.hour == currentComponents.hour &&
-               alarmComponents.minute == currentComponents.minute {
-                triggerRinging(for: alarm)
-                break
             }
         }
     }
@@ -275,5 +260,16 @@ public struct AlarmListView: View {
                 triggerRinging(for: alarm)
             }
         }
+    }
+
+    private func processPendingSnooze() {
+        guard let alarmID = notificationService.pendingSnoozeAlarmID,
+              let alarm = alarms.first(where: { $0.id == alarmID }) else { return }
+        snooze(alarm)
+    }
+
+    private func snooze(_ alarm: Alarm) {
+        notificationService.pendingSnoozeAlarmID = nil
+        AlarmScheduler.shared.snoozeAlarm(alarm, minutes: alarm.snoozeDurationMinutes, modelContext: modelContext)
     }
 }

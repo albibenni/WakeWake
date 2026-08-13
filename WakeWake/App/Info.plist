@@ -20,14 +20,11 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>WakeWake needs camera access to scan barcodes for wake-up missions.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>WakeWake needs motion sensor access to count steps and squats for wake-up missions.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>processing</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict/>

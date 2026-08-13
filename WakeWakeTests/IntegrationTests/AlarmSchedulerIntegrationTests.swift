@@ -39,7 +39,7 @@ final class AlarmSchedulerIntegrationTests: XCTestCase {
         XCTAssertEqual(fetchedAlarms.first?.label, "Morning Workout")
     }
 
-    func testAlarmSnoozeIntegrationCreatesNewSnoozedAlarm() throws {
+    func testAlarmSnoozeIntegrationDoesNotPersistADuplicateAlarm() throws {
         let originalAlarm = Alarm(label: "Job Interview", snoozeDurationMinutes: 10)
         context.insert(originalAlarm)
 
@@ -48,8 +48,7 @@ final class AlarmSchedulerIntegrationTests: XCTestCase {
         let descriptor = FetchDescriptor<Alarm>()
         let fetchedAlarms = try context.fetch(descriptor)
 
-        XCTAssertEqual(fetchedAlarms.count, 2, "Snoozing must insert a new temporary snoozed alarm into SwiftData context")
-        XCTAssertTrue(fetchedAlarms.contains(where: { $0.label.contains("Snoozed:") }))
+        XCTAssertEqual(fetchedAlarms.count, 1, "Snooze requests must not leave duplicate alarms in SwiftData")
     }
 
     func testAlarmDeleteIntegrationRemovesFromDatabase() throws {

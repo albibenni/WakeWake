@@ -149,7 +149,6 @@ public struct MissionPickerView: View {
         case .stepsSquats: return "\(count) steps / squat units"
         case .memory: return "\(count) pattern rounds"
         case .typing: return "1 declaration phrase"
-        case .qrScan: return "1 QR code scan"
         }
     }
 }

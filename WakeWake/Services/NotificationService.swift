@@ -2,7 +2,7 @@
 //  NotificationService.swift
 //  WakeWake
 //
-//  Created in 2026 for iOS 17/18+ (Critical Alerts & Swift Concurrency)
+//  Created in 2026 for iOS 17/18+ (local notifications & Swift Concurrency)
 //
 
 import Foundation
@@ -18,8 +18,9 @@ public final class NotificationService: NSObject, ObservableObject {
     public static let dismissActionIdentifier = "ACTION_DISMISS"
 
     @Published public var isAuthorized: Bool = false
-    @Published public var isCriticalAlertAuthorized: Bool = false
+    @Published public var isTimeSensitiveEnabled: Bool = false
     @Published public var currentRingingAlarmID: UUID?
+    @Published public var pendingSnoozeAlarmID: UUID?
 
     private override init() {
         super.init()
@@ -27,25 +28,24 @@ public final class NotificationService: NSObject, ObservableObject {
         setupCategories()
     }
 
-    /// Request Critical Alert & standard notification permissions from user
-    public func requestPermissions() async -> (granted: Bool, criticalGranted: Bool) {
+    /// Request the standard notification permission. Critical Alerts are not requested
+    /// because they require a separate Apple-approved health or safety entitlement.
+    public func requestPermissions() async -> Bool {
         let center = UNUserNotificationCenter.current()
         
         do {
-            // Options include .criticalAlert which bypasses Do Not Disturb / Sleep Focus / Mute Switch
-            let options: UNAuthorizationOptions = [.alert, .sound, .badge, .criticalAlert]
+            let options: UNAuthorizationOptions = [.alert, .sound, .badge]
             let granted = try await center.requestAuthorization(options: options)
             
             let settings = await center.notificationSettings()
-            let criticalGranted = (settings.criticalAlertSetting == .enabled)
             
             self.isAuthorized = granted
-            self.isCriticalAlertAuthorized = criticalGranted
+            self.isTimeSensitiveEnabled = settings.timeSensitiveSetting == .enabled
             
-            return (granted, criticalGranted)
+            return granted
         } catch {
             print("⚠️ Failed to request notification authorization: \(error)")
-            return (false, false)
+            return false
         }
     }
 
@@ -53,7 +53,7 @@ public final class NotificationService: NSObject, ObservableObject {
     public func checkSettings() async {
         let settings = await UNUserNotificationCenter.current().notificationSettings()
         self.isAuthorized = settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional
-        self.isCriticalAlertAuthorized = settings.criticalAlertSetting == .enabled
+        self.isTimeSensitiveEnabled = settings.timeSensitiveSetting == .enabled
     }
 
     /// Register notification categories for Lock Screen banner actions
@@ -80,50 +80,58 @@ public final class NotificationService: NSObject, ObservableObject {
         UNUserNotificationCenter.current().setNotificationCategories([category])
     }
 
-    /// Schedule or re-schedule a local notification for an alarm
+    private func requestIdentifier(for alarm: Alarm, weekday: RepeatDay? = nil) -> String {
+        weekday.map { "\(alarm.id.uuidString)-weekday-\($0.rawValue)" } ?? alarm.id.uuidString
+    }
+
+    private func snoozeIdentifierPrefix(for alarm: Alarm) -> String {
+        "snooze-\(alarm.id.uuidString)-"
+    }
+
+    private func content(for alarm: Alarm) -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "⏰ " + alarm.label
+        content.body = "Tap Start Mission to turn off this alarm."
+        content.categoryIdentifier = Self.alarmCategoryIdentifier
+        content.userInfo = ["alarm_id": alarm.id.uuidString]
+        content.relevanceScore = 1.0
+        content.interruptionLevel = isTimeSensitiveEnabled ? .timeSensitive : .active
+        content.sound = .default
+        return content
+    }
+
+    /// Schedule one request for a one-off alarm, or one repeating request per weekday.
     public func scheduleNotification(for alarm: Alarm) async {
         guard alarm.isEnabled else {
             cancelNotification(for: alarm)
             return
         }
 
-        guard let triggerDate = alarm.nextTriggerDate() else { return }
-
-        let content = UNMutableNotificationContent()
-        content.title = "⏰ " + alarm.label
-        content.body = "Mission required: \(alarm.missionType.title)! Tap to wake up now."
-        content.categoryIdentifier = Self.alarmCategoryIdentifier
-        content.userInfo = ["alarm_id": alarm.id.uuidString]
-
-        // Sound & Interruption Level configuration
-        content.relevanceScore = 1.0 // Prioritize at top of iOS Notification Center & Lock Screen
-
-        if isCriticalAlertAuthorized {
-            content.interruptionLevel = .critical
-            content.sound = UNNotificationSound.defaultCriticalSound(withAudioVolume: Float(alarm.volume))
-        } else {
-            content.interruptionLevel = .timeSensitive
-            content.sound = UNNotificationSound.default
-        }
-
-        let timeInterval = triggerDate.timeIntervalSinceNow
-        let trigger: UNNotificationTrigger
-        if timeInterval > 0 && timeInterval <= 3600 {
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, timeInterval), repeats: false)
-        } else {
-            let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
-            trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-        }
-
-        let request = UNNotificationRequest(
-            identifier: alarm.id.uuidString,
-            content: content,
-            trigger: trigger
-        )
-
         do {
-            try await UNUserNotificationCenter.current().add(request)
-            print("✅ Scheduled Critical Alert Notification for alarm '\(alarm.label)' at \(triggerDate)")
+            cancelNotification(for: alarm)
+            let calendar = Calendar.autoupdatingCurrent
+            let time = calendar.dateComponents([.hour, .minute], from: alarm.time)
+
+            if alarm.repeatDays.isEmpty {
+                guard let triggerDate = alarm.nextTriggerDate() else { return }
+                let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
+                let request = UNNotificationRequest(
+                    identifier: requestIdentifier(for: alarm), content: content(for: alarm),
+                    trigger: UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+                )
+                try await UNUserNotificationCenter.current().add(request)
+            } else {
+                for weekday in alarm.repeatDays {
+                    var components = time
+                    components.weekday = weekday.rawValue
+                    let request = UNNotificationRequest(
+                        identifier: requestIdentifier(for: alarm, weekday: weekday), content: content(for: alarm),
+                        trigger: UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+                    )
+                    try await UNUserNotificationCenter.current().add(request)
+                }
+            }
+            print("✅ Scheduled notification(s) for '\(alarm.label)'")
         } catch {
             print("❌ Failed to schedule notification: \(error.localizedDescription)")
         }
@@ -131,7 +139,35 @@ public final class NotificationService: NSObject, ObservableObject {
 
     /// Cancel a scheduled notification
     public func cancelNotification(for alarm: Alarm) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [alarm.id.uuidString])
+        let identifiers = [requestIdentifier(for: alarm)] + RepeatDay.allCases.map {
+            requestIdentifier(for: alarm, weekday: $0)
+        }
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: identifiers)
+        center.removeDeliveredNotifications(withIdentifiers: identifiers)
+    }
+
+    /// A snooze is intentionally not persisted as an Alarm model.
+    public func scheduleSnooze(for alarm: Alarm, minutes: Int) async {
+        let identifier = snoozeIdentifierPrefix(for: alarm) + UUID().uuidString
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: max(60, TimeInterval(minutes * 60)), repeats: false
+        )
+        do {
+            try await UNUserNotificationCenter.current().add(
+                UNNotificationRequest(identifier: identifier, content: content(for: alarm), trigger: trigger)
+            )
+        } catch {
+            print("❌ Failed to schedule snooze: \(error.localizedDescription)")
+        }
+    }
+
+    public func cancelSnoozes(for alarm: Alarm) async {
+        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
+        let identifiers = requests.map(\.identifier).filter {
+            $0.hasPrefix(snoozeIdentifierPrefix(for: alarm))
+        }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
     }
 
     /// Cancel all notifications
@@ -171,7 +207,7 @@ extension NotificationService: UNUserNotificationCenterDelegate {
                 switch response.actionIdentifier {
                 case NotificationService.snoozeActionIdentifier:
                     print("💤 Snooze action tapped for alarm \(alarmID)")
-                    NotificationCenter.default.post(name: .snoozeAlarmTriggered, object: alarmID)
+                    NotificationService.shared.pendingSnoozeAlarmID = alarmID
                 case NotificationService.dismissActionIdentifier, UNNotificationDefaultActionIdentifier:
                     print("🔔 Dismiss/Tap action launched app for alarm \(alarmID)")
                     NotificationService.shared.currentRingingAlarmID = alarmID
@@ -186,6 +222,5 @@ extension NotificationService: UNUserNotificationCenterDelegate {
 }
 
 extension Notification.Name {
-    public static let snoozeAlarmTriggered = Notification.Name("snoozeAlarmTriggered")
     public static let startAlarmMissionTriggered = Notification.Name("startAlarmMissionTriggered")
 }

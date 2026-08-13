@@ -24,23 +24,23 @@ public struct SettingsView: View {
 
                 ScrollView {
                     VStack(spacing: 24) {
-                        // Critical Alert Status Banner
+                        // Notification status banner
                         GlassCard(
                             cornerRadius: 20,
-                            borderColor: notificationService.isCriticalAlertAuthorized ? .green.opacity(0.4) : .yellow.opacity(0.4)
+                            borderColor: notificationService.isAuthorized ? .green.opacity(0.4) : .yellow.opacity(0.4)
                         ) {
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Image(systemName: notificationService.isCriticalAlertAuthorized ? "checkmark.shield.fill" : "exclamationmark.triangle.fill")
+                                    Image(systemName: notificationService.isAuthorized ? "checkmark.bell.fill" : "exclamationmark.triangle.fill")
                                         .font(.title2)
-                                        .foregroundColor(notificationService.isCriticalAlertAuthorized ? .green : .yellow)
+                                        .foregroundColor(notificationService.isAuthorized ? .green : .yellow)
 
-                                    Text(notificationService.isCriticalAlertAuthorized ? "Critical Alerts Enabled" : "Critical Alerts Recommended")
+                                    Text(notificationService.isAuthorized ? "Notifications Enabled" : "Notifications Required")
                                         .font(.headline)
                                         .foregroundColor(.white)
                                 }
 
-                                Text("Critical Alerts allow WakeWake to play loud alarm siren even if your iPhone is in Mute Mode, Do Not Disturb, or Sleep Focus.")
+                                Text("WakeWake uses a system notification to deliver alarms. Enable Time Sensitive notifications in iOS Settings for the best Focus behavior.")
                                     .font(.caption)
                                     .foregroundColor(.gray)
 
@@ -49,12 +49,12 @@ public struct SettingsView: View {
                                         _ = await notificationService.requestPermissions()
                                     }
                                 }) {
-                                    Text(notificationService.isCriticalAlertAuthorized ? "Permissions Granted" : "Request Critical Alert Access")
+                                    Text(notificationService.isAuthorized ? "Notifications Enabled" : "Enable Notifications")
                                         .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(notificationService.isCriticalAlertAuthorized ? .green : .black)
+                                        .foregroundColor(notificationService.isAuthorized ? .green : .black)
                                         .padding(.vertical, 10)
                                         .frame(maxWidth: .infinity)
-                                        .background(notificationService.isCriticalAlertAuthorized ? Color.green.opacity(0.15) : Color.yellow)
+                                        .background(notificationService.isAuthorized ? Color.green.opacity(0.15) : Color.yellow)
                                         .cornerRadius(12)
                                 }
                             }
@@ -72,7 +72,7 @@ public struct SettingsView: View {
                                         .foregroundColor(.white)
                                 }
 
-                                Text("Test the loud emergency siren and mission flow right now to verify speaker volume and focus overrides.")
+                                Text("Test the alarm sound and mission flow while WakeWake is open.")
                                     .font(.caption)
                                     .foregroundColor(.gray)
 
@@ -101,7 +101,7 @@ public struct SettingsView: View {
                         }
                         .padding(.horizontal)
 
-                        // iOS Best Practice / DND Guide Card
+                        // iOS alarm behavior guide
                         GlassCard(cornerRadius: 20, borderColor: .white.opacity(0.1)) {
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("HOW OVERSIGHT WORKS ON iOS")
@@ -111,16 +111,16 @@ public struct SettingsView: View {
 
                                 guideRow(
                                     icon: "speaker.wave.3.fill",
-                                    title: "AVAudioSession Category Override",
-                                    detail: "Uses .playback category with .alarm mode to play sound on speaker hardware regardless of mute switch position."
+                                    title: "Foreground alarm playback",
+                                    detail: "When WakeWake is open, it loops the selected sound with an AVAudioSession playback category."
                                 )
 
                                 Divider().background(Color.white.opacity(0.1))
 
                                 guideRow(
                                     icon: "bell.badge.fill",
-                                    title: "Apple Critical Alerts Entitlement",
-                                    detail: "Configured with com.apple.developer.usernotifications.critical-alerts to breach Sleep Focus and Silent Mode."
+                                    title: "Time Sensitive delivery",
+                                    detail: "Time Sensitive notifications may be delivered during Focus, subject to the person’s iOS notification settings."
                                 )
 
                                 Divider().background(Color.white.opacity(0.1))

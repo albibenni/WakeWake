@@ -83,7 +83,7 @@ public struct MissionContainerView: View {
                         targetRounds: alarm.missionTargetCount,
                         onCompleted: onCompleted
                     )
-                case .typing, .qrScan:
+                case .typing:
                     TypingMissionView(
                         onCompleted: onCompleted
                     )

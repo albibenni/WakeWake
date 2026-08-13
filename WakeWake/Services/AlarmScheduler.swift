@@ -21,6 +21,12 @@ public final class AlarmScheduler: ObservableObject {
         do {
             let alarms = try modelContext.fetch(descriptor)
             for alarm in alarms {
+                if alarm.repeatDays.isEmpty, alarm.time < Date() {
+                    // One-off alarms expire after their scheduled date; they never roll into tomorrow.
+                    alarm.isEnabled = false
+                    NotificationService.shared.cancelNotification(for: alarm)
+                    continue
+                }
                 if alarm.isEnabled {
                     Task {
                         await NotificationService.shared.scheduleNotification(for: alarm)
@@ -29,6 +35,7 @@ public final class AlarmScheduler: ObservableObject {
                     NotificationService.shared.cancelNotification(for: alarm)
                 }
             }
+            try? modelContext.save()
         } catch {
             print("❌ Failed to fetch alarms for rescheduling: \(error.localizedDescription)")
         }
@@ -36,6 +43,10 @@ public final class AlarmScheduler: ObservableObject {
 
     /// Schedule next trigger for a specific alarm
     public func saveAndSchedule(alarm: Alarm, modelContext: ModelContext) {
+        if alarm.repeatDays.isEmpty, let nextDate = alarm.nextTriggerDate() {
+            // Persist the exact planned occurrence so this alarm is truly one-off.
+            alarm.time = nextDate
+        }
         alarm.updatedAt = Date()
         modelContext.insert(alarm)
         try? modelContext.save()
@@ -43,44 +54,26 @@ public final class AlarmScheduler: ObservableObject {
         Task {
             _ = await NotificationService.shared.requestPermissions()
             if alarm.isEnabled {
+                await NotificationService.shared.cancelSnoozes(for: alarm)
                 await NotificationService.shared.scheduleNotification(for: alarm)
             } else {
                 NotificationService.shared.cancelNotification(for: alarm)
+                await NotificationService.shared.cancelSnoozes(for: alarm)
             }
         }
     }
 
-    /// Handle snooze for an alarm (reschedules 5 minutes into the future)
-    public func snoozeAlarm(_ alarm: Alarm, minutes: Int, modelContext: ModelContext) {
-        let snoozeTime = Date().addingTimeInterval(TimeInterval(minutes * 60))
-        
-        // Create temporary snooze alarm
-        let snoozedAlarm = Alarm(
-            label: "Snoozed: \(alarm.label)",
-            isEnabled: true,
-            repeatDays: [],
-            sound: alarm.sound,
-            volume: alarm.volume,
-            isVibrationEnabled: alarm.isVibrationEnabled,
-            isSnoozeEnabled: alarm.isSnoozeEnabled,
-            snoozeDurationMinutes: alarm.snoozeDurationMinutes,
-            missionType: alarm.missionType,
-            missionDifficulty: alarm.missionDifficulty,
-            missionTargetCount: alarm.missionTargetCount
-        )
-        snoozedAlarm.time = snoozeTime
-
-        modelContext.insert(snoozedAlarm)
-        try? modelContext.save()
-
+    /// Schedule an ephemeral notification rather than persisting a duplicate alarm.
+    public func snoozeAlarm(_ alarm: Alarm, minutes: Int, modelContext _: ModelContext) {
         Task {
-            await NotificationService.shared.scheduleNotification(for: snoozedAlarm)
+            await NotificationService.shared.scheduleSnooze(for: alarm, minutes: minutes)
         }
     }
 
     /// Delete alarm and cancel notification
     public func deleteAlarm(_ alarm: Alarm, modelContext: ModelContext) {
         NotificationService.shared.cancelNotification(for: alarm)
+        Task { await NotificationService.shared.cancelSnoozes(for: alarm) }
         modelContext.delete(alarm)
         try? modelContext.save()
     }

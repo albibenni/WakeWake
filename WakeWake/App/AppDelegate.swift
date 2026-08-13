@@ -7,7 +7,6 @@
 
 import UIKit
 import UserNotifications
-import AVFoundation
 
 @MainActor
 public final class AppDelegate: NSObject, UIApplicationDelegate {
@@ -20,11 +19,6 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
         // Synchronously register notification delegate on app launch so iOS handles notification taps
         UNUserNotificationCenter.current().delegate = NotificationService.shared
         
-        Task { @MainActor in
-            AudioService.shared.configureAudioSession()
-            _ = await NotificationService.shared.requestPermissions()
-        }
-
         return true
     }
 

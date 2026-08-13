@@ -1,6 +1,6 @@
 # ⏰ WakeWake — iOS Action Alarm App
 
-**WakeWake** is a high-performance, loud action alarm clock application built for iOS 17/18/26+ using **Swift 6**, **SwiftUI**, **SwiftData**, **UserNotifications Critical Alerts**, and **CoreMotion**.
+**WakeWake** is an iPhone action-alarm application built with **SwiftUI**, **SwiftData**, **UserNotifications**, and **CoreMotion**.
 
 WakeWake prevents users from falling back asleep by forcing them to complete interactive **Wake-Up Missions** before turning off the alarm siren.
 
@@ -8,9 +8,9 @@ WakeWake prevents users from falling back asleep by forcing them to complete int
 
 ## 🌟 Key Features
 
-1. **System Override & Critical Alarm Reliability**
-   - **Silent / Mute Switch Bypass:** Uses `AVAudioSession` `.playback` category and `.alarm` mode to ring loudly even when the silent switch is ON.
-   - **Sleep Focus & DND Override:** Integrates Apple `UNAuthorizationOptions.criticalAlert` to sound alarms during Do Not Disturb / Sleep Focus modes.
+1. **Reliable notification delivery**
+   - **System notifications:** Local notifications deliver alarms when WakeWake is not running.
+   - **Time Sensitive option:** Users can enable Time Sensitive delivery in iOS Settings to allow appropriate alarms during Focus.
    - **Offline Reliability:** Uses local `UNCalendarNotificationTrigger` and `UNTimeIntervalNotificationTrigger` (0 internet connection required, works 100% offline & in Airplane Mode).
 
 2. **Standard iOS Alarm Ringtones & Custom Audio Import**
@@ -58,7 +58,7 @@ WakeWake prevents users from falling back asleep by forcing them to complete int
 3. Tap **Save** to activate your alarm.
 
 ### 4. When the Alarm Rings
-- The alarm will pop up in full-screen mode and ring at full volume (bypassing mute switch & Do Not Disturb).
+- Tap the delivered notification to open the full-screen mission and start the looping selected sound.
 - **Snooze:** Tap **Snooze (5 min)** to delay the alarm.
 - **Dismiss:** You **MUST** complete the assigned mission (e.g. solve math problems or shake your phone) before the alarm turns off.
 
@@ -96,4 +96,4 @@ Whenever you run `git push`, Git automatically executes `.git/hooks/pre-push`:
 ---
 
 ## 📄 Licensing & Entitlements
-Refer to [APPLE_ENTITLEMENT_GUIDE.md](file:///Users/benni-projects/WakeWake/APPLE_ENTITLEMENT_GUIDE.md) for details on applying for Apple's Critical Alert entitlement for App Store release.
+See [APPLE_ENTITLEMENT_GUIDE.md](APPLE_ENTITLEMENT_GUIDE.md) for the supported iOS alarm behavior and release checklist.

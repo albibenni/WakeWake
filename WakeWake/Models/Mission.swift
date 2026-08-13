@@ -13,7 +13,6 @@ public enum MissionType: String, Codable, CaseIterable, Identifiable {
     case stepsSquats = "stepsSquats"
     case memory = "memory"
     case typing = "typing"
-    case qrScan = "qrScan"
 
     public var id: String { rawValue }
 
@@ -24,7 +23,6 @@ public enum MissionType: String, Codable, CaseIterable, Identifiable {
         case .stepsSquats: return "Steps & Squats"
         case .memory: return "Memory Puzzle"
         case .typing: return "Motivational Typing"
-        case .qrScan: return "QR/Barcode Scan"
         }
     }
 
@@ -35,7 +33,6 @@ public enum MissionType: String, Codable, CaseIterable, Identifiable {
         case .stepsSquats: return "figure.walk"
         case .memory: return "square.grid.3x3.fill"
         case .typing: return "textformat"
-        case .qrScan: return "qrcode.viewfinder"
         }
     }
 
@@ -46,7 +43,6 @@ public enum MissionType: String, Codable, CaseIterable, Identifiable {
         case .stepsSquats: return "Get out of bed and walk/squat"
         case .memory: return "Memorize and match glowing tile sequences"
         case .typing: return "Type inspirational morning declarations"
-        case .qrScan: return "Scan a barcode in your bathroom/kitchen"
         }
     }
 
@@ -57,7 +53,6 @@ public enum MissionType: String, Codable, CaseIterable, Identifiable {
         case .stepsSquats: return 15
         case .memory: return 4
         case .typing: return 1
-        case .qrScan: return 1
         }
     }
 }

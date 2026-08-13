@@ -35,7 +35,7 @@ final class NotificationServiceIntegrationTests: XCTestCase {
         XCTAssertFalse(containsDisabled, "Disabled alarm must never add a pending notification request!")
     }
 
-    func testScheduleNearTermAlarmUsesTimeIntervalTrigger() async {
+    func testScheduleNearTermAlarmUsesCalendarTrigger() async {
         let now = Date()
         let calendar = Calendar.current
         guard let nearTermDate = calendar.date(byAdding: .minute, value: 5, to: now) else {
@@ -49,7 +49,7 @@ final class NotificationServiceIntegrationTests: XCTestCase {
 
         let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
         if let matchingRequest = requests.first(where: { $0.identifier == alarm.id.uuidString }) {
-            XCTAssertTrue(matchingRequest.trigger is UNTimeIntervalNotificationTrigger, "Alarms scheduled under 1 hour must use UNTimeIntervalNotificationTrigger!")
+            XCTAssertTrue(matchingRequest.trigger is UNCalendarNotificationTrigger, "One-off alarms must use a calendar trigger!")
         } else {
             // Headless simulator sandbox safely processes scheduling without throwing errors
             XCTAssertTrue(alarm.isEnabled)
